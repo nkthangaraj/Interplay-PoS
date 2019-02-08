@@ -76,5 +76,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Proxy\Proxy.csproj">
+      <Project>{5e82b3da-7327-4d7c-827e-aedd37bf6fb3}</Project>
+      <Name>Proxy</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

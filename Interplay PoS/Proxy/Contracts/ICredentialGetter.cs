@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace io.cloudloom.interplay.pos.Proxy
+namespace io.cloudloom.interplay.pos.Proxy.Contracts
 {
-    public class Class1
+   public interface ICredentialGetter
     {
+        Credential GetCredentials();
     }
 }
