@@ -118,3 +118,4 @@ C:\Users\karthikeyanp\Source\Repos\Interplay-PoS\Interplay PoS\Proxy\bin\Debug\S
 C:\Users\karthikeyanp\Source\Repos\Interplay-PoS\Interplay PoS\Proxy\bin\Debug\System.ValueTuple.xml
 C:\Users\karthikeyanp\Source\Repos\Interplay-PoS\Interplay PoS\Proxy\obj\Debug\Proxy.dll
 C:\Users\karthikeyanp\Source\Repos\Interplay-PoS\Interplay PoS\Proxy\obj\Debug\Proxy.pdb
+C:\Users\karthikeyanp\Source\Repos\Interplay-PoS\Interplay PoS\Proxy\obj\Debug\Proxy.csprojResolveAssemblyReference.cache

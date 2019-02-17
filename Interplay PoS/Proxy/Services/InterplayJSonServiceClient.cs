@@ -30,7 +30,7 @@ namespace io.cloudloom.interplay.pos.Proxy.Services
             {
                 if (ex.GetStatus() == HttpStatusCode.Unauthorized)
                 {
-                    Credential credential = this.credentialGetter.GetCredentials();
+                    Credential credential = new Credential { UserName = "admin", Password = "admin" };
                     this.SetCredentials(credential.UserName, credential.Password);
                     CookieContainer container = new CookieContainer();
                     this.CookieContainer = container;
