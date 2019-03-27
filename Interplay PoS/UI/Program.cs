@@ -16,7 +16,7 @@ namespace io.cloudloom.interplay.pos.ui
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new interplayMainForm());
         }
     }
 }

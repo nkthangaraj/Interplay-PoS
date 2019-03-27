@@ -14,11 +14,11 @@ namespace Proxy.Services
             this.serviceClient = new InterplayJSonServiceClient(new ConsoleAuthGetters());
         }
 
-        public string GetCatalogue()
+        public RootObject GetCatalogue()
         {
             serviceClient.BaseUri = baseUrl;
             RootObject catalogue = serviceClient.Get<RootObject>(string.Format("{0}{1}", baseUrl, "catalogs"));
-            return catalogue.ToJson();
+            return catalogue;
         }
     }
 }
