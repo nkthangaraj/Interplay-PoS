@@ -63,6 +63,7 @@ namespace UI.Storage
                             simpleArticles.Add(new SimpleArticle
                             {
                                 name = article.name,
+                                referenceArticleId = article.referenceArticleId
                             });
                         }
                     }

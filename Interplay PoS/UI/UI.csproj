@@ -46,7 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomControls\CurvedButton.cs">
+    <Compile Include="CustomControls\InterplayPOSArticleButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\InterPlayPOSButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\InterPlayPOSCatalogueButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\InterPlayPOSProductEntryButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\InterplayPOSTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="InterplayPoS.cs">

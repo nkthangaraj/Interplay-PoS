@@ -1,9 +1,6 @@
 ﻿using io.cloudloom.interplay.pos.Proxy.Contracts.Catalogue;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UI.Model
 {
@@ -19,15 +16,23 @@ namespace UI.Model
 
         public void Add(SimpleArticle article, int count)
         {
-            Items.Add(
-                new Item
-                {
-                    Name = article.name,
-                    Quantity = count,
-                    //UnitPrice =Convert.ToDouble(article.properties.FirstOrDefault().unit)
-                    UnitPrice = 2,
-                    Total = count * 2
-                });
+            Item existingItem = Items.Where(item => item.ReferenceArticleId == article.referenceArticleId).FirstOrDefault();
+
+            if (existingItem == null)
+            {
+                Items.Add(
+                    new Item
+                    {
+                        Name = article.name,
+                        ReferenceArticleId = article.referenceArticleId,
+                        Quantity = count,
+                        UnitPrice = 2,
+                        Total = count * 2
+                    });
+            }
+
+            else
+                existingItem.Update(article, count, existingItem);
 
             this.calculateNetAmount();
         }
@@ -44,5 +49,12 @@ namespace UI.Model
         public int Quantity { get; set; }
         public double UnitPrice { get; set; }
         public double Total { get; set; }
+        public string ReferenceArticleId { get; set; }
+
+        public void Update(SimpleArticle article, int count, Item item)
+        {
+            item.Quantity = item.Quantity + count;
+            item.Total = item.Quantity * 2;
+        }
     }
 }
