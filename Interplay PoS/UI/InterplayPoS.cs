@@ -1,8 +1,7 @@
 ﻿using io.cloudloom.interplay.pos.Proxy.Contracts.Catalogue;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+using System.Diagnostics;
 using System.Windows.Forms;
 using UI;
 using UI.CustomControls;
@@ -12,6 +11,12 @@ namespace io.cloudloom.interplay.pos.ui
 {
     public partial class interplayMainForm : Form
     {
+        private const int REMOVE_COLUMN_INDEX = 6;
+        private const int ID_COLUMN = 0;
+
+        private bool mouseUp = false;
+        private const int holdButtonDuration = 2000;
+
         public interplayMainForm()
         {
             InitializeComponent();
@@ -77,28 +82,66 @@ namespace io.cloudloom.interplay.pos.ui
                 InterplayPOSArticleButton button = new InterplayPOSArticleButton();
                 button.Text = article.name;
                 button.simpleArticle = article;
-                button.Click += article_button_click;
+                button.MouseDown += Article_Mouse_Down;
+                button.MouseUp += Article_Mouse_Up;
                 flowLayoutPanelArticle.Controls.Add(button);
             }
-
         }
 
-        private void article_button_click(object sender, EventArgs e)
+        private void Article_Mouse_Up(object sender, MouseEventArgs e)
         {
-            InterplayStorage.SetSelectedSimpleArticle(((InterplayPOSArticleButton)sender).simpleArticle);
-
-            Quantity quantityForm = new Quantity();
-            quantityForm.ShowDialog();
-            this.dgCart.DataSource = null;
-            this.dgCart.Refresh();
-            this.dgCart.DataSource = InterplayStorage.Cart.Items;
-            this.lblTotal.Text = "  Total amount: " + InterplayStorage.Cart.NetAmount;
+            mouseUp = true;
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             this.PrepareUIForCreateButtons();
             this.CreateProductButtons(InterplayStorage.GetProductEntries(txtSearch.Text));
+        }
+
+        private void dgCart_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == REMOVE_COLUMN_INDEX)
+            {
+                DataGridViewCell idColumn = (DataGridViewCell)dgCart.Rows[e.RowIndex].Cells[ID_COLUMN];
+
+                if (idColumn != null)
+                {
+                    InterplayStorage.Cart.RemoveItem(Convert.ToString(idColumn.Value));
+                    Utility.CreateCartDatagridView(this.dgCart, InterplayStorage.Cart);
+                }
+            }
+        }
+
+        private void Article_Mouse_Down(object sender, MouseEventArgs e)
+        {
+            InterplayStorage.SetSelectedSimpleArticle(((InterplayPOSArticleButton)sender).simpleArticle);
+
+            mouseUp = false;
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            while (e.Button == MouseButtons.Left && e.Clicks == 1 && (mouseUp == false && stopWatch.ElapsedMilliseconds < holdButtonDuration))
+                Application.DoEvents();
+
+            if (stopWatch.ElapsedMilliseconds < holdButtonDuration)
+            {
+                InterplayStorage.Cart.Add(InterplayStorage.SelectedSimpleArticle, 1);
+            }
+
+            else
+            {
+                Quantity quantityForm = new Quantity();
+                quantityForm.ShowDialog();
+            }
+
+            Utility.CreateCartDatagridView(this.dgCart, InterplayStorage.Cart);
+            //this.lblTotal.Text = "  Total amount: " + InterplayStorage.Cart.NetAmount;
+        }
+
+        private void btnTest_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseUp = true;
         }
     }
 }

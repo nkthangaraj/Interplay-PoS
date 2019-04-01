@@ -30,6 +30,9 @@ namespace io.cloudloom.interplay.pos.ui
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabMainFormInterplayPoS = new System.Windows.Forms.TabControl();
             this.tabSales = new System.Windows.Forms.TabPage();
             this.tblLayout_Right_Sales = new System.Windows.Forms.TableLayoutPanel();
@@ -37,11 +40,18 @@ namespace io.cloudloom.interplay.pos.ui
             this.flowLayoutPanelCatagory = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelProducts = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelArticle = new System.Windows.Forms.FlowLayoutPanel();
-            this.txtSearch = new UI.CustomControls.InterplayPOSTextBox();
             this.tblLayout_Left_Sales = new System.Windows.Forms.TableLayoutPanel();
             this.dgCart = new System.Windows.Forms.DataGridView();
-            this.lblTotal = new System.Windows.Forms.Label();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tabPurchase = new System.Windows.Forms.TabPage();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtSearch = new UI.CustomControls.InterplayPOSTextBox();
             this.tabMainFormInterplayPoS.SuspendLayout();
             this.tabSales.SuspendLayout();
             this.tblLayout_Right_Sales.SuspendLayout();
@@ -150,23 +160,11 @@ namespace io.cloudloom.interplay.pos.ui
             this.flowLayoutPanelArticle.Size = new System.Drawing.Size(539, 68);
             this.flowLayoutPanelArticle.TabIndex = 2;
             // 
-            // txtSearch
-            // 
-            this.txtSearch.BackColor = System.Drawing.Color.White;
-            this.txtSearch.Font = new System.Drawing.Font("Constantia", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(3, 95);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(257, 31);
-            this.txtSearch.TabIndex = 3;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
             // tblLayout_Left_Sales
             // 
             this.tblLayout_Left_Sales.ColumnCount = 1;
             this.tblLayout_Left_Sales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayout_Left_Sales.Controls.Add(this.dgCart, 0, 0);
-            this.tblLayout_Left_Sales.Controls.Add(this.lblTotal, 0, 1);
             this.tblLayout_Left_Sales.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayout_Left_Sales.Location = new System.Drawing.Point(4, 4);
             this.tblLayout_Left_Sales.Name = "tblLayout_Left_Sales";
@@ -179,22 +177,92 @@ namespace io.cloudloom.interplay.pos.ui
             // 
             // dgCart
             // 
+            this.dgCart.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.GhostWhite;
+            this.dgCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgCart.BackgroundColor = System.Drawing.Color.GhostWhite;
+            this.dgCart.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgCart.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LimeGreen;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgCart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.SNo,
+            this.ItemName,
+            this.Quantity,
+            this.UnitPrice,
+            this.Total,
+            this.Remove});
+            this.dgCart.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgCart.Location = new System.Drawing.Point(3, 3);
             this.dgCart.Name = "dgCart";
-            this.dgCart.Size = new System.Drawing.Size(354, 274);
+            this.dgCart.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LimeGreen;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgCart.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgCart.RowHeadersVisible = false;
+            this.dgCart.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.tblLayout_Left_Sales.SetRowSpan(this.dgCart, 2);
+            this.dgCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgCart.Size = new System.Drawing.Size(354, 240);
             this.dgCart.TabIndex = 0;
+            this.dgCart.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCart_CellClick);
             // 
-            // lblTotal
+            // Id
             // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(3, 280);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Padding = new System.Windows.Forms.Padding(0, 40, 0, 0);
-            this.lblTotal.Size = new System.Drawing.Size(0, 57);
-            this.lblTotal.TabIndex = 1;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // SNo
+            // 
+            this.SNo.HeaderText = "S No";
+            this.SNo.Name = "SNo";
+            this.SNo.Width = 65;
+            // 
+            // ItemName
+            // 
+            this.ItemName.HeaderText = "Description";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.Width = 218;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Width = 65;
+            // 
+            // UnitPrice
+            // 
+            this.UnitPrice.HeaderText = "Unit";
+            this.UnitPrice.Name = "UnitPrice";
+            this.UnitPrice.Width = 65;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.Width = 65;
+            // 
+            // Remove
+            // 
+            this.Remove.HeaderText = "";
+            this.Remove.Image = global::UI.Properties.Resources.delete16c16;
+            this.Remove.Name = "Remove";
+            this.Remove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Remove.Width = 45;
             // 
             // tabPurchase
             // 
@@ -205,6 +273,24 @@ namespace io.cloudloom.interplay.pos.ui
             this.tabPurchase.TabIndex = 1;
             this.tabPurchase.Text = "Purchase";
             this.tabPurchase.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.Width = 50;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.White;
+            this.txtSearch.Font = new System.Drawing.Font("Constantia", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(3, 95);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(257, 31);
+            this.txtSearch.TabIndex = 3;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // interplayMainForm
             // 
@@ -221,7 +307,6 @@ namespace io.cloudloom.interplay.pos.ui
             this.tblLayout_Items.ResumeLayout(false);
             this.tblLayout_Items.PerformLayout();
             this.tblLayout_Left_Sales.ResumeLayout(false);
-            this.tblLayout_Left_Sales.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCart)).EndInit();
             this.ResumeLayout(false);
 
@@ -238,8 +323,15 @@ namespace io.cloudloom.interplay.pos.ui
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelArticle;
         private System.Windows.Forms.TableLayoutPanel tblLayout_Left_Sales;
         private System.Windows.Forms.DataGridView dgCart;
-        private System.Windows.Forms.Label lblTotal;
         private InterplayPOSTextBox txtSearch;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewImageColumn Remove;
     }
 }
 

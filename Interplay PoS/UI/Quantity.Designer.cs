@@ -52,22 +52,29 @@
             // 
             // btnQuantityOK
             // 
-            this.btnQuantityOK.Location = new System.Drawing.Point(24, 42);
+            this.btnQuantityOK.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnQuantityOK.FlatAppearance.BorderSize = 0;
+            this.btnQuantityOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuantityOK.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnQuantityOK.Location = new System.Drawing.Point(24, 46);
+            this.btnQuantityOK.Margin = new System.Windows.Forms.Padding(0);
             this.btnQuantityOK.Name = "btnQuantityOK";
             this.btnQuantityOK.Size = new System.Drawing.Size(138, 23);
             this.btnQuantityOK.TabIndex = 3;
             this.btnQuantityOK.Text = "OK";
-            this.btnQuantityOK.UseVisualStyleBackColor = true;
+            this.btnQuantityOK.UseVisualStyleBackColor = false;
             this.btnQuantityOK.Click += new System.EventHandler(this.btnQuantityOK_Click);
             // 
             // Quantity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(215, 87);
             this.Controls.Add(this.btnQuantityOK);
             this.Controls.Add(this.lblQuantity);
             this.Controls.Add(this.txtQuantity);
+            this.Location = new System.Drawing.Point(300, 300);
             this.Name = "Quantity";
             this.Text = "Quantity";
             this.Load += new System.EventHandler(this.Quantity_Load);

@@ -55,6 +55,7 @@
     <Compile Include="CustomControls\InterPlayPOSCatalogueButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CustomControls\InterplayPOSDataGridViewButton.cs" />
     <Compile Include="CustomControls\InterPlayPOSProductEntryButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -77,6 +78,7 @@
       <DependentUpon>Quantity.cs</DependentUpon>
     </Compile>
     <Compile Include="Storage\InterplayStorage.cs" />
+    <Compile Include="Utility.cs" />
     <EmbeddedResource Include="InterplayPoS.resx">
       <DependentUpon>InterplayPoS.cs</DependentUpon>
     </EmbeddedResource>
@@ -88,6 +90,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Quantity.resx">
       <DependentUpon>Quantity.cs</DependentUpon>
@@ -111,6 +114,9 @@
       <Name>Proxy</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Images\delete.jpg" />
+    <Content Include="Images\delete16c16.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

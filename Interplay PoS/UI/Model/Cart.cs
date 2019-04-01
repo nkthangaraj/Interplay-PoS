@@ -23,7 +23,7 @@ namespace UI.Model
                 Items.Add(
                     new Item
                     {
-                        Name = article.name,
+                        ItemName = article.name,
                         ReferenceArticleId = article.referenceArticleId,
                         Quantity = count,
                         UnitPrice = 2,
@@ -37,6 +37,11 @@ namespace UI.Model
             this.calculateNetAmount();
         }
 
+        public void RemoveItem(string referenceId)
+        {
+            Items.RemoveAll(item => item.ReferenceArticleId == referenceId);
+        }
+
         private void calculateNetAmount()
         {
             this.NetAmount = this.Items.Sum(item => item.Total);
@@ -45,7 +50,7 @@ namespace UI.Model
 
     public class Item
     {
-        public string Name { get; set; }
+        public string ItemName { get; set; }
         public int Quantity { get; set; }
         public double UnitPrice { get; set; }
         public double Total { get; set; }
@@ -57,4 +62,5 @@ namespace UI.Model
             item.Total = item.Quantity * 2;
         }
     }
+
 }
