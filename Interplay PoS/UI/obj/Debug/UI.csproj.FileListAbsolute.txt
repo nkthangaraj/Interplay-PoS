@@ -82,3 +82,4 @@ D:\IPOS_Latest\Interplay PoS\UI\obj\Debug\UI.csproj.CoreCompileInputs.cache
 D:\IPOS_Latest\Interplay PoS\UI\obj\Debug\UI.csproj.CopyComplete
 D:\IPOS_Latest\Interplay PoS\UI\obj\Debug\UI.exe
 D:\IPOS_Latest\Interplay PoS\UI\obj\Debug\UI.pdb
+D:\IPOS_Latest\Interplay PoS\UI\obj\Debug\UI.Authentication.resources

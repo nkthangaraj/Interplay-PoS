@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI;
 
 namespace io.cloudloom.interplay.pos.ui
 {
@@ -16,7 +17,8 @@ namespace io.cloudloom.interplay.pos.ui
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new interplayMainForm());
+            Application.Run(new Authentication());
+           // Application.Run(new interplayMainForm());
         }
     }
 }

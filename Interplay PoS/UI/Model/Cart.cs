@@ -40,6 +40,7 @@ namespace UI.Model
         public void RemoveItem(string referenceId)
         {
             Items.RemoveAll(item => item.ReferenceArticleId == referenceId);
+            this.calculateNetAmount();
         }
 
         private void calculateNetAmount()

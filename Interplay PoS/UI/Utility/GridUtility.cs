@@ -3,9 +3,9 @@ using System.Windows.Forms;
 using UI.CustomControls;
 using UI.Model;
 
-namespace UI
+namespace Utility
 {
-    public static class Utility
+    public static class GridUtility
     {
         public static void CreateCartDatagridView(DataGridView cartGrid, Cart cart)
         {

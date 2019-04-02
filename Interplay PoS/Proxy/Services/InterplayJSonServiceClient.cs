@@ -11,36 +11,38 @@ namespace io.cloudloom.interplay.pos.Proxy.Services
 {
     public class InterplayJSonServiceClient : JsonServiceClient
     {
-        ICredentialGetter credentialGetter;
-
-        public InterplayJSonServiceClient(ICredentialGetter credentialGetter)
+        public InterplayJSonServiceClient(Credential cre)
         {
-            this.credentialGetter = credentialGetter;
+            Credential credential = new Credential { UserName = cre.UserName, Password = cre.Password };
+            this.SetCredentials(credential.UserName, credential.Password);
+            CookieContainer container = new CookieContainer();
+            this.CookieContainer = container;
         }
 
         public override TResponse Get<TResponse>(string relativeOrAbsoluteUrl)
         {
-            try
-            {
+            //try
+            //{
                 TResponse response =  base.Get<TResponse>(relativeOrAbsoluteUrl);
                 return response;
-            }
+            //}
 
-            catch(Exception ex)
-            {
-                if (ex.GetStatus() == HttpStatusCode.Unauthorized)
-                {
-                    Credential credential = new Credential { UserName = "admin", Password = "admin" };
-                    this.SetCredentials(credential.UserName, credential.Password);
-                    CookieContainer container = new CookieContainer();
-                    this.CookieContainer = container;
-                    //TResponse response = base.Get<TResponse>(relativeOrAbsoluteUrl);
-                    TResponse response = this.Get<TResponse>(relativeOrAbsoluteUrl);
-                    return response;
-                }
-                else
-                    return default(TResponse);
-            }
+            //catch(Exception ex)
+            //{
+                //if (ex.GetStatus() == HttpStatusCode.Unauthorized)
+                //{
+                //    Credential credential = new Credential { UserName = "admin", Password = "admin" };
+                //    this.SetCredentials(credential.UserName, credential.Password);
+                //    CookieContainer container = new CookieContainer();
+                //    this.CookieContainer = container;
+                //    //TResponse response = base.Get<TResponse>(relativeOrAbsoluteUrl);
+                //    TResponse response = this.Get<TResponse>(relativeOrAbsoluteUrl);
+                //    return response;
+                //}
+                //else
+                //    return default(TResponse);
+                
+            //}
 
         }
     }

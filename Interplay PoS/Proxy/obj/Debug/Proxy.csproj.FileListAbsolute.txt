@@ -358,8 +358,8 @@ D:\IPOS_Latest\Interplay PoS\Proxy\bin\Debug\System.Memory.xml
 D:\IPOS_Latest\Interplay PoS\Proxy\bin\Debug\System.Numerics.Vectors.xml
 D:\IPOS_Latest\Interplay PoS\Proxy\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\IPOS_Latest\Interplay PoS\Proxy\bin\Debug\System.ValueTuple.xml
-D:\IPOS_Latest\Interplay PoS\Proxy\obj\Debug\Proxy.csprojAssemblyReference.cache
 D:\IPOS_Latest\Interplay PoS\Proxy\obj\Debug\Proxy.csproj.CoreCompileInputs.cache
 D:\IPOS_Latest\Interplay PoS\Proxy\obj\Debug\Proxy.csproj.CopyComplete
 D:\IPOS_Latest\Interplay PoS\Proxy\obj\Debug\Proxy.dll
 D:\IPOS_Latest\Interplay PoS\Proxy\obj\Debug\Proxy.pdb
+D:\IPOS_Latest\Interplay PoS\Proxy\obj\Debug\Proxy.csprojAssemblyReference.cache

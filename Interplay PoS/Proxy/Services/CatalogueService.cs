@@ -1,6 +1,7 @@
 ﻿using io.cloudloom.interplay.pos.Proxy.Services;
 using io.cloudloom.interplay.pos.Proxy.Contracts.Catalogue;
 using ServiceStack;
+using io.cloudloom.interplay.pos.Proxy.Contracts;
 
 namespace Proxy.Services
 {
@@ -9,9 +10,9 @@ namespace Proxy.Services
         private const string baseUrl = "http://localhost:8080/";
         private InterplayJSonServiceClient serviceClient;
 
-        public CatalogueService()
+        public CatalogueService(Credential credential)
         {
-            this.serviceClient = new InterplayJSonServiceClient(new ConsoleAuthGetters());
+            this.serviceClient = new InterplayJSonServiceClient(credential);
         }
 
         public RootObject GetCatalogue()

@@ -14,9 +14,9 @@ namespace io.cloudloom.interplay.pos.Proxy.Services
         private const string baseUrl = "http://localhost:8080/";
         private InterplayJSonServiceClient serviceClient;
 
-        public UserService()
+        public UserService(Credential credential)
         {
-            this.serviceClient = new InterplayJSonServiceClient(new ConsoleAuthGetters());
+            this.serviceClient = new InterplayJSonServiceClient(credential);
         }
 
        public  string GetProfile()

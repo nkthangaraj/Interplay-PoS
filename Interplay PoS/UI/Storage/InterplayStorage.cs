@@ -1,4 +1,5 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Contracts.Catalogue;
+﻿using io.cloudloom.interplay.pos.Proxy.Contracts;
+using io.cloudloom.interplay.pos.Proxy.Contracts.Catalogue;
 using Proxy.Services;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace UI.Storage
         static InterplayStorage()
         {
             Cart = new Cart();
-            CatalogueService service = new CatalogueService();
+            CatalogueService service = new CatalogueService(new Credential { UserName = "admin", Password = "admin"});
             Catalogues = service.GetCatalogue()._embedded.catalogs;
         }
 
@@ -19,6 +20,7 @@ namespace UI.Storage
         public static Catalog SelectedCatalog { get; private set; }
         public static ProductEntry SelectedProductEntry { get; private set; }
         public static SimpleArticle SelectedSimpleArticle { get; private set; }
+        public static Credential Credential { get; private set; }
         public static Cart Cart { get; set; }
 
         public static List<ProductEntry> GetProductEntries()
@@ -88,6 +90,11 @@ namespace UI.Storage
         public static void SetSelectedSimpleArticle(SimpleArticle selectedArticle)
         {
             SelectedSimpleArticle = selectedArticle;
+        }
+
+        public static void SetCredentials(string userName, string password)
+        {
+            Credential = new Credential { UserName = userName, Password = password };
         }
     }
 }

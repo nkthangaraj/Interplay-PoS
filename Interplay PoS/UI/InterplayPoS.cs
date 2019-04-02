@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using UI;
 using UI.CustomControls;
 using UI.Storage;
+using Utility;
+using System.Drawing;
 
 namespace io.cloudloom.interplay.pos.ui
 {
@@ -38,8 +40,15 @@ namespace io.cloudloom.interplay.pos.ui
         private void Catalogue_Button_Click(object sender, EventArgs e)
         {
             InterplayStorage.SetSelectedCatalog(((InterPlayPOSCatalogueButton)sender).Text);
-
+            this.FormatSelectedItem((Button)sender);
             this.CreateProductButtons();
+        }
+
+        private void FormatSelectedItem(Button button)
+        {
+            button.BackColor = Color.Green;
+            button.ForeColor = Color.White;
+            button.Font = new Font(button.Font, FontStyle.Bold);
         }
 
         private void CreateProductButtons()
@@ -70,6 +79,7 @@ namespace io.cloudloom.interplay.pos.ui
         private void Product_Button_Click(object sender, EventArgs e)
         {
             InterplayStorage.SetSelectedProductEntry(((InterPlayPOSProductEntryButton)sender).productEntry);
+            this.FormatSelectedItem((Button)sender);
             this.CreateArticlebuttons();
         }
 
@@ -91,26 +101,13 @@ namespace io.cloudloom.interplay.pos.ui
         private void Article_Mouse_Up(object sender, MouseEventArgs e)
         {
             mouseUp = true;
+            this.FormatSelectedItem((Button)sender);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             this.PrepareUIForCreateButtons();
             this.CreateProductButtons(InterplayStorage.GetProductEntries(txtSearch.Text));
-        }
-
-        private void dgCart_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == REMOVE_COLUMN_INDEX)
-            {
-                DataGridViewCell idColumn = (DataGridViewCell)dgCart.Rows[e.RowIndex].Cells[ID_COLUMN];
-
-                if (idColumn != null)
-                {
-                    InterplayStorage.Cart.RemoveItem(Convert.ToString(idColumn.Value));
-                    Utility.CreateCartDatagridView(this.dgCart, InterplayStorage.Cart);
-                }
-            }
         }
 
         private void Article_Mouse_Down(object sender, MouseEventArgs e)
@@ -135,13 +132,35 @@ namespace io.cloudloom.interplay.pos.ui
                 quantityForm.ShowDialog();
             }
 
-            Utility.CreateCartDatagridView(this.dgCart, InterplayStorage.Cart);
-            //this.lblTotal.Text = "  Total amount: " + InterplayStorage.Cart.NetAmount;
+            GridUtility.CreateCartDatagridView(this.dgCart, InterplayStorage.Cart);
+            UpdateNetAmountInUI();
         }
 
         private void btnTest_MouseUp(object sender, MouseEventArgs e)
         {
             mouseUp = true;
+        }
+
+        private void dgCart_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == REMOVE_COLUMN_INDEX)
+            {
+                DataGridViewCell idColumn = (DataGridViewCell)dgCart.Rows[e.RowIndex].Cells[ID_COLUMN];
+
+                if (idColumn != null)
+                {
+                    InterplayStorage.Cart.RemoveItem(Convert.ToString(idColumn.Value));
+                    GridUtility.CreateCartDatagridView(this.dgCart, InterplayStorage.Cart);
+                    UpdateNetAmountInUI();
+                }
+            }
+        }
+
+        private void UpdateNetAmountInUI()
+        {
+            this.lblTotal.Text = "Total amount: " + InterplayStorage.Cart.NetAmount;
+            this.lblTax.Text = "Tax: 0.0";
+            this.lblNetAmount.Text = "Net Amount: " + InterplayStorage.Cart.NetAmount;
         }
     }
 }
