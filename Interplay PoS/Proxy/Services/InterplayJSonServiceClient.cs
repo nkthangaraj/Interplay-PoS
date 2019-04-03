@@ -21,29 +21,8 @@ namespace io.cloudloom.interplay.pos.Proxy.Services
 
         public override TResponse Get<TResponse>(string relativeOrAbsoluteUrl)
         {
-            //try
-            //{
                 TResponse response =  base.Get<TResponse>(relativeOrAbsoluteUrl);
                 return response;
-            //}
-
-            //catch(Exception ex)
-            //{
-                //if (ex.GetStatus() == HttpStatusCode.Unauthorized)
-                //{
-                //    Credential credential = new Credential { UserName = "admin", Password = "admin" };
-                //    this.SetCredentials(credential.UserName, credential.Password);
-                //    CookieContainer container = new CookieContainer();
-                //    this.CookieContainer = container;
-                //    //TResponse response = base.Get<TResponse>(relativeOrAbsoluteUrl);
-                //    TResponse response = this.Get<TResponse>(relativeOrAbsoluteUrl);
-                //    return response;
-                //}
-                //else
-                //    return default(TResponse);
-                
-            //}
-
         }
     }
 }
