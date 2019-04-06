@@ -40,6 +40,7 @@ namespace io.cloudloom.interplay.pos.ui
             this.flowLayoutPanelCatagory = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelProducts = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelArticle = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtSearch = new UI.CustomControls.InterplayPOSTextBox();
             this.left = new System.Windows.Forms.TableLayoutPanel();
             this.dgCart = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,14 +50,13 @@ namespace io.cloudloom.interplay.pos.ui
             this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remove = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tabPurchase = new System.Windows.Forms.TabPage();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.downLeft = new System.Windows.Forms.TableLayoutPanel();
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblTax = new System.Windows.Forms.Label();
             this.lblNetAmount = new System.Windows.Forms.Label();
             this.btnPay = new System.Windows.Forms.Button();
-            this.txtSearch = new UI.CustomControls.InterplayPOSTextBox();
+            this.tabPurchase = new System.Windows.Forms.TabPage();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.tabMainFormInterplayPoS.SuspendLayout();
             this.tabSales.SuspendLayout();
             this.tblLayout_Sales.SuspendLayout();
@@ -166,6 +166,17 @@ namespace io.cloudloom.interplay.pos.ui
             this.flowLayoutPanelArticle.Size = new System.Drawing.Size(539, 68);
             this.flowLayoutPanelArticle.TabIndex = 2;
             // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.White;
+            this.txtSearch.Font = new System.Drawing.Font("Constantia", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(3, 95);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(257, 31);
+            this.txtSearch.TabIndex = 3;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // left
             // 
             this.left.ColumnCount = 1;
@@ -222,7 +233,7 @@ namespace io.cloudloom.interplay.pos.ui
             this.dgCart.RowHeadersVisible = false;
             this.dgCart.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgCart.Size = new System.Drawing.Size(354, 314);
+            this.dgCart.Size = new System.Drawing.Size(354, 274);
             this.dgCart.TabIndex = 2;
             this.dgCart.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCart_CellClick);
             // 
@@ -270,23 +281,6 @@ namespace io.cloudloom.interplay.pos.ui
             this.Remove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Remove.Width = 45;
             // 
-            // tabPurchase
-            // 
-            this.tabPurchase.Location = new System.Drawing.Point(4, 44);
-            this.tabPurchase.Name = "tabPurchase";
-            this.tabPurchase.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPurchase.Size = new System.Drawing.Size(926, 415);
-            this.tabPurchase.TabIndex = 1;
-            this.tabPurchase.Text = "Purchase";
-            this.tabPurchase.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.Width = 50;
-            // 
             // downLeft
             // 
             this.downLeft.BackColor = System.Drawing.Color.GhostWhite;
@@ -298,13 +292,13 @@ namespace io.cloudloom.interplay.pos.ui
             this.downLeft.Controls.Add(this.lblNetAmount, 0, 2);
             this.downLeft.Controls.Add(this.btnPay, 1, 2);
             this.downLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.downLeft.Location = new System.Drawing.Point(9, 290);
+            this.downLeft.Location = new System.Drawing.Point(3, 283);
             this.downLeft.Name = "downLeft";
             this.downLeft.RowCount = 3;
             this.downLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.downLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.downLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.downLeft.Size = new System.Drawing.Size(323, 108);
+            this.downLeft.Size = new System.Drawing.Size(354, 115);
             this.downLeft.TabIndex = 3;
             // 
             // lblTotal
@@ -322,7 +316,7 @@ namespace io.cloudloom.interplay.pos.ui
             // 
             this.lblTax.AutoSize = true;
             this.lblTax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTax.Location = new System.Drawing.Point(3, 35);
+            this.lblTax.Location = new System.Drawing.Point(3, 38);
             this.lblTax.Name = "lblTax";
             this.lblTax.Size = new System.Drawing.Size(34, 15);
             this.lblTax.TabIndex = 1;
@@ -332,7 +326,7 @@ namespace io.cloudloom.interplay.pos.ui
             // 
             this.lblNetAmount.AutoSize = true;
             this.lblNetAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNetAmount.Location = new System.Drawing.Point(3, 70);
+            this.lblNetAmount.Location = new System.Drawing.Point(3, 76);
             this.lblNetAmount.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
             this.lblNetAmount.Name = "lblNetAmount";
             this.lblNetAmount.Size = new System.Drawing.Size(85, 15);
@@ -345,23 +339,29 @@ namespace io.cloudloom.interplay.pos.ui
             this.btnPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPay.ForeColor = System.Drawing.Color.White;
-            this.btnPay.Location = new System.Drawing.Point(170, 73);
+            this.btnPay.Location = new System.Drawing.Point(201, 79);
             this.btnPay.Name = "btnPay";
             this.btnPay.Size = new System.Drawing.Size(125, 32);
             this.btnPay.TabIndex = 3;
             this.btnPay.Text = "Proceed to Pay";
             this.btnPay.UseVisualStyleBackColor = false;
             // 
-            // txtSearch
+            // tabPurchase
             // 
-            this.txtSearch.BackColor = System.Drawing.Color.White;
-            this.txtSearch.Font = new System.Drawing.Font("Constantia", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(3, 95);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(257, 31);
-            this.txtSearch.TabIndex = 3;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            this.tabPurchase.Location = new System.Drawing.Point(4, 44);
+            this.tabPurchase.Name = "tabPurchase";
+            this.tabPurchase.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPurchase.Size = new System.Drawing.Size(926, 415);
+            this.tabPurchase.TabIndex = 1;
+            this.tabPurchase.Text = "Purchase";
+            this.tabPurchase.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.Width = 50;
             // 
             // interplayMainForm
             // 
