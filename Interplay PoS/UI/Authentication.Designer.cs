@@ -141,6 +141,7 @@
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.authenticationTableLayout);
             this.Name = "Authentication";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Authentication";
             this.authenticationTableLayout.ResumeLayout(false);
             this.authenticationTableLayout.PerformLayout();
