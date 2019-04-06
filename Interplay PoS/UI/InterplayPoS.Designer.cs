@@ -37,9 +37,6 @@ namespace io.cloudloom.interplay.pos.ui
             this.tabSales = new System.Windows.Forms.TabPage();
             this.tblLayout_Sales = new System.Windows.Forms.TableLayoutPanel();
             this.right = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanelCatagory = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanelProducts = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanelArticle = new System.Windows.Forms.FlowLayoutPanel();
             this.left = new System.Windows.Forms.TableLayoutPanel();
             this.dgCart = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,7 +53,12 @@ namespace io.cloudloom.interplay.pos.ui
             this.btnPay = new System.Windows.Forms.Button();
             this.tabPurchase = new System.Windows.Forms.TabPage();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.flowLayoutPanelCatagory = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanelProducts = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanelArticle = new System.Windows.Forms.FlowLayoutPanel();
+            this.panelSearch = new System.Windows.Forms.Panel();
             this.txtSearch = new UI.CustomControls.InterplayPOSTextBox();
+            this.butClear = new System.Windows.Forms.Button();
             this.tabMainFormInterplayPoS.SuspendLayout();
             this.tabSales.SuspendLayout();
             this.tblLayout_Sales.SuspendLayout();
@@ -64,6 +66,7 @@ namespace io.cloudloom.interplay.pos.ui
             this.left.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCart)).BeginInit();
             this.downLeft.SuspendLayout();
+            this.panelSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMainFormInterplayPoS
@@ -112,59 +115,21 @@ namespace io.cloudloom.interplay.pos.ui
             // 
             this.right.ColumnCount = 1;
             this.right.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.right.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.right.Controls.Add(this.flowLayoutPanelCatagory, 0, 0);
+            this.right.Controls.Add(this.flowLayoutPanelCatagory, 0, 1);
             this.right.Controls.Add(this.flowLayoutPanelProducts, 0, 2);
             this.right.Controls.Add(this.flowLayoutPanelArticle, 0, 3);
-            this.right.Controls.Add(this.txtSearch, 0, 1);
+            this.right.Controls.Add(this.panelSearch, 0, 0);
             this.right.Dock = System.Windows.Forms.DockStyle.Fill;
             this.right.Location = new System.Drawing.Point(371, 4);
             this.right.Name = "right";
             this.right.RowCount = 4;
-            this.right.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.right.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.right.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.right.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.right.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.19757F));
+            this.right.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.9561F));
+            this.right.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.89024F));
+            this.right.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.9561F));
+            this.right.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.right.Size = new System.Drawing.Size(545, 401);
             this.right.TabIndex = 0;
-            // 
-            // flowLayoutPanelCatagory
-            // 
-            this.flowLayoutPanelCatagory.AutoScroll = true;
-            this.flowLayoutPanelCatagory.BackColor = System.Drawing.Color.GhostWhite;
-            this.flowLayoutPanelCatagory.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.flowLayoutPanelCatagory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelCatagory.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanelCatagory.Name = "flowLayoutPanelCatagory";
-            this.flowLayoutPanelCatagory.Padding = new System.Windows.Forms.Padding(5);
-            this.flowLayoutPanelCatagory.Size = new System.Drawing.Size(539, 74);
-            this.flowLayoutPanelCatagory.TabIndex = 0;
-            // 
-            // flowLayoutPanelProducts
-            // 
-            this.flowLayoutPanelProducts.AutoScroll = true;
-            this.flowLayoutPanelProducts.BackColor = System.Drawing.Color.GhostWhite;
-            this.flowLayoutPanelProducts.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.flowLayoutPanelProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelProducts.Location = new System.Drawing.Point(3, 123);
-            this.flowLayoutPanelProducts.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.flowLayoutPanelProducts.Name = "flowLayoutPanelProducts";
-            this.flowLayoutPanelProducts.Padding = new System.Windows.Forms.Padding(5);
-            this.flowLayoutPanelProducts.Size = new System.Drawing.Size(539, 187);
-            this.flowLayoutPanelProducts.TabIndex = 1;
-            // 
-            // flowLayoutPanelArticle
-            // 
-            this.flowLayoutPanelArticle.AutoScroll = true;
-            this.flowLayoutPanelArticle.BackColor = System.Drawing.Color.GhostWhite;
-            this.flowLayoutPanelArticle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.flowLayoutPanelArticle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelArticle.Location = new System.Drawing.Point(3, 330);
-            this.flowLayoutPanelArticle.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.flowLayoutPanelArticle.Name = "flowLayoutPanelArticle";
-            this.flowLayoutPanelArticle.Padding = new System.Windows.Forms.Padding(5);
-            this.flowLayoutPanelArticle.Size = new System.Drawing.Size(539, 68);
-            this.flowLayoutPanelArticle.TabIndex = 2;
             // 
             // left
             // 
@@ -353,16 +318,60 @@ namespace io.cloudloom.interplay.pos.ui
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn1.Width = 50;
             // 
+            // flowLayoutPanelCatagory
+            // 
+            this.flowLayoutPanelCatagory.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.flowLayoutPanelCatagory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelCatagory.Location = new System.Drawing.Point(3, 43);
+            this.flowLayoutPanelCatagory.Name = "flowLayoutPanelCatagory";
+            this.flowLayoutPanelCatagory.Size = new System.Drawing.Size(539, 74);
+            this.flowLayoutPanelCatagory.TabIndex = 0;
+            // 
+            // flowLayoutPanelProducts
+            // 
+            this.flowLayoutPanelProducts.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.flowLayoutPanelProducts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelProducts.Location = new System.Drawing.Point(3, 123);
+            this.flowLayoutPanelProducts.Name = "flowLayoutPanelProducts";
+            this.flowLayoutPanelProducts.Size = new System.Drawing.Size(539, 194);
+            this.flowLayoutPanelProducts.TabIndex = 1;
+            // 
+            // flowLayoutPanelArticle
+            // 
+            this.flowLayoutPanelArticle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.flowLayoutPanelArticle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelArticle.Location = new System.Drawing.Point(3, 323);
+            this.flowLayoutPanelArticle.Name = "flowLayoutPanelArticle";
+            this.flowLayoutPanelArticle.Size = new System.Drawing.Size(539, 75);
+            this.flowLayoutPanelArticle.TabIndex = 2;
+            // 
+            // panelSearch
+            // 
+            this.panelSearch.Controls.Add(this.butClear);
+            this.panelSearch.Controls.Add(this.txtSearch);
+            this.panelSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSearch.Location = new System.Drawing.Point(3, 3);
+            this.panelSearch.Name = "panelSearch";
+            this.panelSearch.Size = new System.Drawing.Size(539, 34);
+            this.panelSearch.TabIndex = 3;
+            // 
             // txtSearch
             // 
-            this.txtSearch.BackColor = System.Drawing.Color.White;
-            this.txtSearch.Font = new System.Drawing.Font("Constantia", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(3, 95);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(3, 6);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(257, 31);
-            this.txtSearch.TabIndex = 3;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            this.txtSearch.Size = new System.Drawing.Size(207, 26);
+            this.txtSearch.TabIndex = 0;
+            // 
+            // butClear
+            // 
+            this.butClear.BackColor = System.Drawing.Color.Gray;
+            this.butClear.Location = new System.Drawing.Point(216, 6);
+            this.butClear.Name = "butClear";
+            this.butClear.Size = new System.Drawing.Size(75, 26);
+            this.butClear.TabIndex = 1;
+            this.butClear.Text = "Clear";
+            this.butClear.UseVisualStyleBackColor = false;
             // 
             // interplayMainForm
             // 
@@ -377,11 +386,12 @@ namespace io.cloudloom.interplay.pos.ui
             this.tabSales.ResumeLayout(false);
             this.tblLayout_Sales.ResumeLayout(false);
             this.right.ResumeLayout(false);
-            this.right.PerformLayout();
             this.left.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgCart)).EndInit();
             this.downLeft.ResumeLayout(false);
             this.downLeft.PerformLayout();
+            this.panelSearch.ResumeLayout(false);
+            this.panelSearch.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -392,9 +402,6 @@ namespace io.cloudloom.interplay.pos.ui
         private System.Windows.Forms.TabPage tabSales;
         private System.Windows.Forms.TableLayoutPanel tblLayout_Sales;
         private System.Windows.Forms.TableLayoutPanel right;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelCatagory;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelProducts;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelArticle;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.TableLayoutPanel left;
         private System.Windows.Forms.DataGridView dgCart;
@@ -410,7 +417,12 @@ namespace io.cloudloom.interplay.pos.ui
         private System.Windows.Forms.Label lblTax;
         private System.Windows.Forms.Label lblNetAmount;
         private System.Windows.Forms.Button btnPay;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelCatagory;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelProducts;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelArticle;
+        private System.Windows.Forms.Panel panelSearch;
         private InterplayPOSTextBox txtSearch;
+        private System.Windows.Forms.Button butClear;
     }
 }
 

@@ -107,7 +107,7 @@ namespace io.cloudloom.interplay.pos.ui
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             this.PrepareUIForCreateButtons();
-            this.CreateProductButtons(InterplayStorage.GetProductEntries(txtSearch.Text));
+          //  this.CreateProductButtons(InterplayStorage.GetProductEntries(txtSearch.Text));
         }
 
         private void Article_Mouse_Down(object sender, MouseEventArgs e)
