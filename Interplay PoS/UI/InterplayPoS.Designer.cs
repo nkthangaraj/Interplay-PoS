@@ -40,7 +40,6 @@ namespace io.cloudloom.interplay.pos.ui
             this.flowLayoutPanelCatagory = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelProducts = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelArticle = new System.Windows.Forms.FlowLayoutPanel();
-            this.txtSearch = new UI.CustomControls.InterplayPOSTextBox();
             this.left = new System.Windows.Forms.TableLayoutPanel();
             this.dgCart = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +56,7 @@ namespace io.cloudloom.interplay.pos.ui
             this.btnPay = new System.Windows.Forms.Button();
             this.tabPurchase = new System.Windows.Forms.TabPage();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtSearch = new UI.CustomControls.InterplayPOSTextBox();
             this.tabMainFormInterplayPoS.SuspendLayout();
             this.tabSales.SuspendLayout();
             this.tblLayout_Sales.SuspendLayout();
@@ -166,17 +166,6 @@ namespace io.cloudloom.interplay.pos.ui
             this.flowLayoutPanelArticle.Size = new System.Drawing.Size(539, 68);
             this.flowLayoutPanelArticle.TabIndex = 2;
             // 
-            // txtSearch
-            // 
-            this.txtSearch.BackColor = System.Drawing.Color.White;
-            this.txtSearch.Font = new System.Drawing.Font("Constantia", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(3, 95);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(257, 31);
-            this.txtSearch.TabIndex = 3;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
             // left
             // 
             this.left.ColumnCount = 1;
@@ -202,13 +191,13 @@ namespace io.cloudloom.interplay.pos.ui
             this.dgCart.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.Green;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgCart.ColumnHeadersHeight = 40;
             this.dgCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.SNo,
@@ -232,6 +221,7 @@ namespace io.cloudloom.interplay.pos.ui
             this.dgCart.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgCart.RowHeadersVisible = false;
             this.dgCart.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgCart.RowTemplate.Height = 40;
             this.dgCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgCart.Size = new System.Drawing.Size(354, 274);
             this.dgCart.TabIndex = 2;
@@ -363,6 +353,17 @@ namespace io.cloudloom.interplay.pos.ui
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn1.Width = 50;
             // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.White;
+            this.txtSearch.Font = new System.Drawing.Font("Constantia", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(3, 95);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(257, 31);
+            this.txtSearch.TabIndex = 3;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // interplayMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -394,7 +395,6 @@ namespace io.cloudloom.interplay.pos.ui
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelCatagory;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelProducts;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelArticle;
-        private InterplayPOSTextBox txtSearch;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.TableLayoutPanel left;
         private System.Windows.Forms.DataGridView dgCart;
@@ -410,6 +410,7 @@ namespace io.cloudloom.interplay.pos.ui
         private System.Windows.Forms.Label lblTax;
         private System.Windows.Forms.Label lblNetAmount;
         private System.Windows.Forms.Button btnPay;
+        private InterplayPOSTextBox txtSearch;
     }
 }
 
