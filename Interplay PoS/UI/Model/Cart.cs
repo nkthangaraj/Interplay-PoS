@@ -43,6 +43,11 @@ namespace UI.Model
             this.calculateNetAmount();
         }
 
+        public void ClearCart()
+        {
+            Items.Clear();
+        }
+
         private void calculateNetAmount()
         {
             this.NetAmount = this.Items.Sum(item => item.Total);

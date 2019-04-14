@@ -96,5 +96,10 @@ namespace UI.Storage
         {
             Credential = new Credential { UserName = userName, Password = password };
         }
+
+        public static void ClearCart()
+        {
+            InterplayStorage.Cart.ClearCart();
+        }
     }
 }

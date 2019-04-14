@@ -107,7 +107,7 @@ namespace io.cloudloom.interplay.pos.ui
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             this.PrepareUIForCreateButtons();
-          //  this.CreateProductButtons(InterplayStorage.GetProductEntries(txtSearch.Text));
+            this.CreateProductButtons(InterplayStorage.GetProductEntries(txtSearch.Text));
         }
 
         private void Article_Mouse_Down(object sender, MouseEventArgs e)
@@ -161,6 +161,17 @@ namespace io.cloudloom.interplay.pos.ui
             this.lblTotal.Text = "Total amount: " + InterplayStorage.Cart.NetAmount;
             this.lblTax.Text = "Tax: 0.0";
             this.lblNetAmount.Text = "Net Amount: " + InterplayStorage.Cart.NetAmount;
+        }
+
+        private void butClear_Click(object sender, EventArgs e)
+        {
+            this.txtSearch.Clear();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            GridUtility.ClearCartGrid(this.dgCart);
+            InterplayStorage.Cart.ClearCart();
         }
     }
 }

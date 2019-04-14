@@ -11,11 +11,11 @@ namespace Utility
         {
             cartGrid.Rows.Clear();
 
-                int serialNumber = 1;
-                foreach (Item item in cart.Items)
+            int serialNumber = 1;
+            foreach (Item item in cart.Items)
+            {
+                cartGrid.Rows.Add(new object[]
                 {
-                    cartGrid.Rows.Add(new object[]
-                    {
                         item.ReferenceArticleId,
                         Convert.ToString(serialNumber),
                         item.ItemName,
@@ -23,10 +23,15 @@ namespace Utility
                         Convert.ToString(item.UnitPrice),
                         Convert.ToString(item.Total)
 
-                    });
+                });
 
-                    serialNumber++;
-                }
+                serialNumber++;
             }
         }
+
+        public static void ClearCartGrid(DataGridView cartGrid)
+        {
+            cartGrid.Rows.Clear();
+        }
     }
+}
