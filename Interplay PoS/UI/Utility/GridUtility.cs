@@ -11,13 +11,11 @@ namespace Utility
         {
             cartGrid.Rows.Clear();
 
-            int serialNumber = 1;
             foreach (Item item in cart.Items)
             {
                 cartGrid.Rows.Add(new object[]
                 {
                         item.ReferenceArticleId,
-                        Convert.ToString(serialNumber),
                         item.ItemName,
                         Convert.ToString(item.Quantity),
                         Convert.ToString(item.UnitPrice),
@@ -25,7 +23,6 @@ namespace Utility
 
                 });
 
-                serialNumber++;
             }
         }
 

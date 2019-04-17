@@ -83,6 +83,9 @@
     <Compile Include="CustomControls\InterplayPOSTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CustomControls\InterplayPOSUserSelectionButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="InterplayPoS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +102,12 @@
       <DependentUpon>Quantity.cs</DependentUpon>
     </Compile>
     <Compile Include="Storage\InterplayStorage.cs" />
+    <Compile Include="UserSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserSelection.Designer.cs">
+      <DependentUpon>UserSelection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility\AuthenticationUtility.cs" />
     <Compile Include="Utility\GridUtility.cs" />
     <EmbeddedResource Include="Authentication.resx">
@@ -120,6 +129,9 @@
     <EmbeddedResource Include="Quantity.resx">
       <DependentUpon>Quantity.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserSelection.resx">
+      <DependentUpon>UserSelection.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -140,8 +152,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\delete.jpg" />
     <Content Include="Images\delete16c16.png" />
+    <Content Include="Images\decrease.png" />
+    <Content Include="Images\delete50C50.png" />
+    <Content Include="Images\QuanityMinus50C50.jpg" />
+    <Content Include="Images\QuantityMinus60C60.jpg" />
+    <Content Include="Images\QuantityPlus60C60.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

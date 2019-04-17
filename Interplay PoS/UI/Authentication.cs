@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.Utility;
 using io.cloudloom.interplay.pos.ui;
+using UI.Storage;
+
 namespace UI
 {
     public partial class Authentication : Form
@@ -21,20 +23,20 @@ namespace UI
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = this.txtUserName.Text.Trim();
             string password = this.txtPassword.Text;
 
-            string error = this.authenticate(username, password);
+            string error = this.authenticate(InterplayStorage.SelectedUser.UserName, password);
 
             if(!string.IsNullOrEmpty(error))
             {
-                lblError.Text = error;
+                labelError.Text = error;
             }
 
             else
             {
                 interplayMainForm posForm = new interplayMainForm();
                 posForm.Show();
+                this.Close();
             }
         }
 

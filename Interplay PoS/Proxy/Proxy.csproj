@@ -76,6 +76,7 @@
     <Compile Include="Contracts\Catalogue.cs" />
     <Compile Include="Contracts\Credential.cs" />
     <Compile Include="Contracts\Profile.cs" />
+    <Compile Include="Contracts\UserDetail.cs" />
     <Compile Include="Contracts\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CatalogueService.cs" />

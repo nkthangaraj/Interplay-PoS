@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using UI;
 using UI.CustomControls;
 using UI.Storage;
 using Utility;
-using System.Drawing;
 
 namespace io.cloudloom.interplay.pos.ui
 {
@@ -35,6 +36,14 @@ namespace io.cloudloom.interplay.pos.ui
                 button.Click += Catalogue_Button_Click;
                 flowLayoutPanelCatagory.Controls.Add(button);
             }
+
+            this.SetDefaultCatalogue(InterplayStorage.Catalogues.First());
+        }
+
+        private void SetDefaultCatalogue(Catalog catalog)
+        {
+            InterplayStorage.SetSelectedCatalog(catalog.name);
+            this.CreateProductButtons();
         }
 
         private void Catalogue_Button_Click(object sender, EventArgs e)
@@ -158,9 +167,9 @@ namespace io.cloudloom.interplay.pos.ui
 
         private void UpdateNetAmountInUI()
         {
-            this.lblTotal.Text = "Total amount: " + InterplayStorage.Cart.NetAmount;
-            this.lblTax.Text = "Tax: 0.0";
-            this.lblNetAmount.Text = "Net Amount: " + InterplayStorage.Cart.NetAmount;
+            this.btnTotal.Text = Convert.ToString(InterplayStorage.Cart.NetAmount);
+            this.btnTax.Text = "0.0";
+            this.btnNetTotal.Text = Convert.ToString(InterplayStorage.Cart.NetAmount);
         }
 
         private void butClear_Click(object sender, EventArgs e)
@@ -170,8 +179,52 @@ namespace io.cloudloom.interplay.pos.ui
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void interplayMainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClear_Click_1(object sender, EventArgs e)
+        {
             GridUtility.ClearCartGrid(this.dgCart);
             InterplayStorage.Cart.ClearCart();
+            this.UpdateNetAmountInUI();
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (this.dgCart.SelectedRows.Count > 0)
+            {
+                string selectedArticleId =Convert.ToString(this.dgCart.SelectedRows[0].Cells[0].Value);
+                InterplayStorage.Cart.RemoveItem(selectedArticleId);
+                GridUtility.CreateCartDatagridView(this.dgCart, InterplayStorage.Cart);
+                this.UpdateNetAmountInUI();
+            }
+        }
+
+        private void btnDecrease_Click(object sender, EventArgs e)
+        {
+            if (this.dgCart.SelectedRows.Count > 0)
+            {
+                string selectedArticleId = Convert.ToString(this.dgCart.SelectedRows[0].Cells[0].Value);
+                InterplayStorage.Cart.UpdateQuantity(selectedArticleId, -1);
+                GridUtility.CreateCartDatagridView(this.dgCart, InterplayStorage.Cart);
+                this.UpdateNetAmountInUI();
+            }
+        }
+
+        private void bnnIncrease_Click(object sender, EventArgs e)
+        {
+            if (this.dgCart.SelectedRows.Count > 0)
+            {
+                string selectedArticleId = Convert.ToString(this.dgCart.SelectedRows[0].Cells[0].Value);
+                InterplayStorage.Cart.UpdateQuantity(selectedArticleId, 1);
+                GridUtility.CreateCartDatagridView(this.dgCart, InterplayStorage.Cart);
+                this.UpdateNetAmountInUI();
+            }
         }
     }
 }

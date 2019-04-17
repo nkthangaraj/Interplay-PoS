@@ -32,7 +32,19 @@ namespace UI.Model
             }
 
             else
-                existingItem.Update(article, count, existingItem);
+                existingItem.Update(count, existingItem);
+
+            this.calculateNetAmount();
+        }
+
+        public void UpdateQuantity(string articleId, int quantity = 1)
+        {
+            Item existingItem = Items.Where(item => item.ReferenceArticleId == articleId).FirstOrDefault();
+
+            existingItem.Update(quantity, existingItem);
+
+            if (existingItem.Quantity == 0)
+                this.RemoveItem(articleId);
 
             this.calculateNetAmount();
         }
@@ -46,6 +58,7 @@ namespace UI.Model
         public void ClearCart()
         {
             Items.Clear();
+            this.calculateNetAmount();
         }
 
         private void calculateNetAmount()
@@ -62,7 +75,7 @@ namespace UI.Model
         public double Total { get; set; }
         public string ReferenceArticleId { get; set; }
 
-        public void Update(SimpleArticle article, int count, Item item)
+        public void Update( int count, Item item)
         {
             item.Quantity = item.Quantity + count;
             item.Total = item.Quantity * 2;

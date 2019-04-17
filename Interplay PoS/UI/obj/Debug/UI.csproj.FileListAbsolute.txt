@@ -113,3 +113,4 @@ F:\CloudLoom\Interplay PoS\UI\obj\Debug\UI.csproj.CoreCompileInputs.cache
 F:\CloudLoom\Interplay PoS\UI\obj\Debug\UI.csproj.CopyComplete
 F:\CloudLoom\Interplay PoS\UI\obj\Debug\UI.exe
 F:\CloudLoom\Interplay PoS\UI\obj\Debug\UI.pdb
+D:\IPOS_Latest\Interplay PoS\UI\obj\Debug\UI.UserSelection.resources
