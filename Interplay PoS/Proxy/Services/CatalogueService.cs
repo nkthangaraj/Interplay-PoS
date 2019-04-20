@@ -7,7 +7,7 @@ namespace Proxy.Services
 {
     public class CatalogueService
     {
-        private const string baseUrl = "http://localhost:8080/";
+        private const string baseUrl = "https://dev.interplay.loomws.net/";
         private InterplayJSonServiceClient serviceClient;
 
         public CatalogueService(Credential credential)

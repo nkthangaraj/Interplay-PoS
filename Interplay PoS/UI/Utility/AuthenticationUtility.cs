@@ -1,4 +1,5 @@
 ﻿using io.cloudloom.interplay.pos.Proxy.Contracts;
+using io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers;
 using io.cloudloom.interplay.pos.Proxy.Services;
 using System;
 using System.Collections.Generic;
@@ -12,21 +13,23 @@ namespace UI.Utility
     {
         const string AuthenticationError = "Invalid credentials, Please validate";
 
-        public static string Authenticate(Credential credential)
+        private static  User user;
+
+        public static User Authenticate(Credential credential)
         {
             string errorMessage = string.Empty;
 
             try
             {
                 UserService userService = new UserService(credential);
-                userService.GetProfile();
+                return user= userService.GetProfile();
             }
             catch (Exception ex)
             {
                 errorMessage = AuthenticationError;
             }
 
-            return errorMessage;
+            return null;
         }
     }
 }

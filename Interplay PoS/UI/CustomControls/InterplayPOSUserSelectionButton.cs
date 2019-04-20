@@ -1,4 +1,4 @@
-﻿using Proxy.Contracts;
+﻿using io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,7 +14,7 @@ namespace UI.CustomControls
         public InterplayPOSUserSelectionButton()
         {
             Height = 100;
-            Width = 100;
+            Width = 204;
             BackColor = Color.LimeGreen;
             ForeColor = Color.White;
             Margin = new Padding(0);
@@ -22,6 +22,6 @@ namespace UI.CustomControls
             FlatAppearance.BorderSize = 1;
             FlatStyle = FlatStyle.Flat;
         }
-        public UserDetail userDetail { get; set; }
+        public User userDetail { get; set; }
     }
 }

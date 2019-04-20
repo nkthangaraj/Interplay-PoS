@@ -31,11 +31,9 @@ namespace UI
         private void InitializeComponent()
         {
             this.authenticationTableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.btnLogin = new System.Windows.Forms.Button();
+            this.lblInvalidUserMessage = new System.Windows.Forms.Label();
+            this.lblEnterPIN = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblError = new System.Windows.Forms.Label();
-            this.labelError = new System.Windows.Forms.Label();
             this.authenticationTableLayout.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,95 +42,77 @@ namespace UI
             this.authenticationTableLayout.ColumnCount = 2;
             this.authenticationTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.02847F));
             this.authenticationTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.97153F));
-            this.authenticationTableLayout.Controls.Add(this.btnLogin, 1, 1);
-            this.authenticationTableLayout.Controls.Add(this.txtPassword, 1, 0);
-            this.authenticationTableLayout.Controls.Add(this.label2, 0, 0);
-            this.authenticationTableLayout.Controls.Add(this.labelError, 0, 1);
+            this.authenticationTableLayout.Controls.Add(this.lblInvalidUserMessage, 1, 2);
+            this.authenticationTableLayout.Controls.Add(this.lblEnterPIN, 0, 1);
+            this.authenticationTableLayout.Controls.Add(this.txtPassword, 1, 1);
             this.authenticationTableLayout.Location = new System.Drawing.Point(37, 12);
             this.authenticationTableLayout.Name = "authenticationTableLayout";
-            this.authenticationTableLayout.RowCount = 2;
-            this.authenticationTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.authenticationTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
-            this.authenticationTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.authenticationTableLayout.RowCount = 3;
+            this.authenticationTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.authenticationTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.authenticationTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.authenticationTableLayout.Size = new System.Drawing.Size(281, 85);
             this.authenticationTableLayout.TabIndex = 0;
             // 
-            // btnLogin
+            // lblInvalidUserMessage
             // 
-            this.btnLogin.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Font = new System.Drawing.Font("Leelawadee", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnLogin.Location = new System.Drawing.Point(92, 45);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(86, 30);
-            this.btnLogin.TabIndex = 0;
-            this.btnLogin.Text = "Login";
-            this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.lblInvalidUserMessage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblInvalidUserMessage.AutoSize = true;
+            this.lblInvalidUserMessage.Location = new System.Drawing.Point(185, 65);
+            this.lblInvalidUserMessage.Name = "lblInvalidUserMessage";
+            this.lblInvalidUserMessage.Size = new System.Drawing.Size(0, 13);
+            this.lblInvalidUserMessage.TabIndex = 8;
+            this.lblInvalidUserMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblEnterPIN
+            // 
+            this.lblEnterPIN.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblEnterPIN.AutoSize = true;
+            this.lblEnterPIN.Font = new System.Drawing.Font("Leelawadee", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEnterPIN.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblEnterPIN.Location = new System.Drawing.Point(7, 35);
+            this.lblEnterPIN.Name = "lblEnterPIN";
+            this.lblEnterPIN.Size = new System.Drawing.Size(74, 16);
+            this.lblEnterPIN.TabIndex = 2;
+            this.lblEnterPIN.Text = "Enter PIN:";
             // 
             // txtPassword
             // 
+            this.txtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPassword.Font = new System.Drawing.Font("Leelawadee", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(92, 3);
+            this.txtPassword.Location = new System.Drawing.Point(92, 32);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '#';
-            this.txtPassword.Size = new System.Drawing.Size(177, 27);
+            this.txtPassword.Size = new System.Drawing.Size(186, 27);
             this.txtPassword.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Leelawadee", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 14);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Password:";
-            // 
-            // lblError
-            // 
-            this.lblError.AutoSize = true;
-            this.lblError.Font = new System.Drawing.Font("Leelawadee", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblError.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblError.Location = new System.Drawing.Point(125, 169);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 14);
-            this.lblError.TabIndex = 1;
-            // 
-            // labelError
-            // 
-            this.labelError.AutoSize = true;
-            this.labelError.Location = new System.Drawing.Point(3, 42);
-            this.labelError.Name = "labelError";
-            this.labelError.Size = new System.Drawing.Size(0, 13);
-            this.labelError.TabIndex = 5;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // Authentication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BackColor = System.Drawing.Color.Orange;
             this.ClientSize = new System.Drawing.Size(354, 110);
-            this.Controls.Add(this.lblError);
             this.Controls.Add(this.authenticationTableLayout);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Authentication";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Authentication";
             this.authenticationTableLayout.ResumeLayout(false);
             this.authenticationTableLayout.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel authenticationTableLayout;
-        private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblEnterPIN;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Label lblError;
-        private System.Windows.Forms.Label labelError;
+        private System.Windows.Forms.Label lblInvalidUserMessage;
     }
 }

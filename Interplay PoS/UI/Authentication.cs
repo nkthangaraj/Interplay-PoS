@@ -1,4 +1,4 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Contracts;
+﻿using io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using UI.Utility;
 using io.cloudloom.interplay.pos.ui;
 using UI.Storage;
+using io.cloudloom.interplay.pos.Proxy.Contracts;
 
 namespace UI
 {
@@ -25,11 +26,11 @@ namespace UI
         {
             string password = this.txtPassword.Text;
 
-            string error = this.authenticate(InterplayStorage.SelectedUser.UserName, password);
+            User user = this.authenticate(InterplayStorage.SelectedUser.username, password);
 
-            if(!string.IsNullOrEmpty(error))
+            if(user is null)
             {
-                labelError.Text = error;
+                lblInvalidUserMessage.Text = "Invalid PIN";
             }
 
             else
@@ -40,7 +41,7 @@ namespace UI
             }
         }
 
-        private string authenticate(string userName, string password)
+        private User authenticate(string userName, string password)
         {
             return AuthenticationUtility.Authenticate(
                 new Credential
@@ -48,6 +49,29 @@ namespace UI
                     UserName = userName,
                     Password = password
                 });
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPassword.Text.Count() == 6)
+            {
+                string password = this.txtPassword.Text;
+
+                User user = this.authenticate(InterplayStorage.SelectedUser.username, password);
+
+                if (user is null)
+                {
+                    lblInvalidUserMessage.Text = "Invalid PIN";
+                }
+
+                else
+                {
+                    interplayMainForm posForm = new interplayMainForm();
+                    //posForm.MdiParent = true;
+                    posForm.Show();
+                    this.Close();                    
+                }
+            }
         }
     }
 }

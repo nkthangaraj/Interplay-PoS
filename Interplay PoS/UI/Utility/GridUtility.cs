@@ -1,4 +1,5 @@
-﻿using System;
+﻿using io.cloudloom.interplay.pos.Proxy.Contracts.Carts;
+using System;
 using System.Windows.Forms;
 using UI.CustomControls;
 using UI.Model;
@@ -7,22 +8,21 @@ namespace Utility
 {
     public static class GridUtility
     {
-        public static void CreateCartDatagridView(DataGridView cartGrid, Cart cart)
+        public static void CreateCartDatagridView(DataGridView cartGrid, RootObject cart)
         {
             cartGrid.Rows.Clear();
 
-            foreach (Item item in cart.Items)
+            foreach (var item in cart.lineItems)
             {
                 cartGrid.Rows.Add(new object[]
+
                 {
-                        item.ReferenceArticleId,
-                        item.ItemName,
-                        Convert.ToString(item.Quantity),
-                        Convert.ToString(item.UnitPrice),
-                        Convert.ToString(item.Total)
-
+                    item.articleID,
+                    item.name,
+                    item.quantity//,
+                    //item.unitPrice.amount,
+                   // item.subTotal.amount
                 });
-
             }
         }
 

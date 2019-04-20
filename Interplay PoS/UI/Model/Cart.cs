@@ -1,4 +1,4 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Contracts.Catalogue;
+﻿using io.cloudloom.interplay.pos.Proxy.Contracts.Carts;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,57 +14,67 @@ namespace UI.Model
         public List<Item> Items { get; set; }
         public double NetAmount { get; set; }
 
-        public void Add(SimpleArticle article, int count)
+        public void Add(RootObject article)
         {
-            Item existingItem = Items.Where(item => item.ReferenceArticleId == article.referenceArticleId).FirstOrDefault();
-
-            if (existingItem == null)
+            for (int index = 0; index < article.lineItems.Count; index++)
             {
-                Items.Add(
-                    new Item
-                    {
-                        ItemName = article.name,
-                        ReferenceArticleId = article.referenceArticleId,
-                        Quantity = count,
-                        UnitPrice = 2,
-                        Total = count * 2
-                    });
+                Item existingItem = Items.Where(item => item.ReferenceArticleId == article.lineItems[index].articleID).FirstOrDefault();
+
+                if (existingItem == null)
+                {
+                    Items.Add(
+                         new Item
+                         {
+                             ItemName = article.lineItems[index].name,
+                             ReferenceArticleId = article.lineItems[index].articleID,
+                             Quantity = article.lineItems[index].quantity
+                            // UnitPrice = article.lineItems[index].unitPrice.amount,
+                            // Total = article.subTotal.amount
+                         });
+                }
+                else
+                {
+                    //existingItem.Update(article, existingItem);
+
+                    existingItem.Update(article, existingItem,index);
+                }
             }
+            
 
-            else
-                existingItem.Update(count, existingItem);
+            //else
+            //    existingItem.Update(count, existingItem);
 
-            this.calculateNetAmount();
+            //this.calculateNetAmount();
         }
 
-        public void UpdateQuantity(string articleId, int quantity = 1)
-        {
-            Item existingItem = Items.Where(item => item.ReferenceArticleId == articleId).FirstOrDefault();
+        //public void UpdateQuantity(string articleId, int quantity = 1)
+        //{
+        //    Item existingItem = Items.Where(item => item.ReferenceArticleId == articleId).FirstOrDefault();
 
-            existingItem.Update(quantity, existingItem);
+        //    existingItem.Update(quantity, existingItem);
 
-            if (existingItem.Quantity == 0)
-                this.RemoveItem(articleId);
+        //    if (existingItem.Quantity == 0)
+        //        this.RemoveItem(articleId);
 
-            this.calculateNetAmount();
-        }
+        //    this.calculateNetAmount();
+        //}
 
         public void RemoveItem(string referenceId)
         {
             Items.RemoveAll(item => item.ReferenceArticleId == referenceId);
-            this.calculateNetAmount();
+           // this.calculateNetAmount();
         }
 
         public void ClearCart()
         {
             Items.Clear();
-            this.calculateNetAmount();
+            //this.calculateNetAmount();
         }
 
-        private void calculateNetAmount()
-        {
-            this.NetAmount = this.Items.Sum(item => item.Total);
-        }
+        //private void calculateNetAmount()
+        //{
+        //    this.NetAmount = this.Items.Sum(item => item.Total);
+        //}
     }
 
     public class Item
@@ -75,10 +85,10 @@ namespace UI.Model
         public double Total { get; set; }
         public string ReferenceArticleId { get; set; }
 
-        public void Update( int count, Item item)
+        public void Update(RootObject currentObject,Item item,int index)
         {
-            item.Quantity = item.Quantity + count;
-            item.Total = item.Quantity * 2;
+            item.Quantity = currentObject.lineItems[index].quantity;
+            //item.Total = currentObject.subTotal.amount;
         }
     }
 

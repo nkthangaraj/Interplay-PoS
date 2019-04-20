@@ -73,12 +73,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\AllUsers.cs" />
+    <Compile Include="Contracts\Carts.cs" />
     <Compile Include="Contracts\Catalogue.cs" />
+    <Compile Include="Contracts\ActiveCarts.cs" />
     <Compile Include="Contracts\Credential.cs" />
     <Compile Include="Contracts\Profile.cs" />
     <Compile Include="Contracts\UserDetail.cs" />
     <Compile Include="Contracts\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CartsService.cs" />
     <Compile Include="Services\CatalogueService.cs" />
     <Compile Include="Services\InterplayJSonServiceClient.cs" />
     <Compile Include="Services\UserService.cs" />

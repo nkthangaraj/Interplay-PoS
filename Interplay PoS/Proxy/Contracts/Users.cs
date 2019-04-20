@@ -38,5 +38,5 @@ namespace io.cloudloom.interplay.pos.Proxy.Contracts
     public class Users
     {
         public Alps alps { get; set; }
-    }
+    }   
 }

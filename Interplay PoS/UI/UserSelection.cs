@@ -1,4 +1,4 @@
-﻿using Proxy.Contracts;
+﻿using io.cloudloom.interplay.pos.Proxy.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.CustomControls;
 using UI.Storage;
+using Proxy.Contracts;
 
 namespace UI
 {
@@ -18,7 +19,7 @@ namespace UI
         public UserSelection()
         {
             InitializeComponent();
-            AlignUI();
+           // AlignUI();
             PrepareUserSelectionview();
         }
 
@@ -30,49 +31,22 @@ namespace UI
 
         private void PrepareUserSelectionview()
         {
-            List<UserDetail> userDetails = this.GetUserDetail();
+            List<io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User> userDetails = this.GetUserDetail();
             this.CreateUserSelectionButtons(userDetails);
         }
-        private List<UserDetail> GetUserDetail()
+        private List<io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User> GetUserDetail()
         {
-            List<UserDetail> userDetails = new List<UserDetail>()
-            {
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-                new UserDetail{UserName = "admin", Password = "admin"},
-            };
+            List<io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User> allUsers = InterplayStorage.GetAllUsers();
 
-            return userDetails;
+            return allUsers;
         }
 
-        private void CreateUserSelectionButtons(List<UserDetail> userDetails)
+        private void CreateUserSelectionButtons(List<io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User> userDetails)
         {
-            foreach(UserDetail detail in userDetails)
+            foreach(io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User detail in userDetails)
             {
                 InterplayPOSUserSelectionButton button = new InterplayPOSUserSelectionButton();
-                button.Text = detail.UserName;
+                button.Text = detail.username;
                 button.userDetail = detail;
                 button.Click += User_Button_Click;
                 button.Font = new System.Drawing.Font("Leelawadee", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -82,11 +56,16 @@ namespace UI
 
         private void User_Button_Click(object sender, EventArgs e)
         {
-            UserDetail user = ((InterplayPOSUserSelectionButton)sender).userDetail;
+            io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User user = ((InterplayPOSUserSelectionButton)sender).userDetail;
             InterplayStorage.SelectedUser = user;
             Authentication authForm = new Authentication();
             authForm.Show();
             authForm.Focus();
+            authForm.FormClosed += AuthForm_FormClosed;
+        }
+
+        private void AuthForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
             this.Hide();
         }
     }

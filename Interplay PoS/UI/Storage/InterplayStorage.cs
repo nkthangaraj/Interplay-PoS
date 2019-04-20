@@ -1,5 +1,8 @@
 ﻿using io.cloudloom.interplay.pos.Proxy.Contracts;
 using io.cloudloom.interplay.pos.Proxy.Contracts.Catalogue;
+using io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers;
+using io.cloudloom.interplay.pos.Proxy.Contracts.Carts;
+using io.cloudloom.interplay.pos.Proxy.Services;
 using Proxy.Contracts;
 using Proxy.Services;
 using System.Collections.Generic;
@@ -16,6 +19,9 @@ namespace UI.Storage
             CatalogueService service = new CatalogueService(new Credential { UserName = "admin", Password = "admin" });
             Catalogues = service.GetCatalogue()._embedded.catalogs;
             FontFamily = "Leelawadee";
+
+            UserService getAllUsers = new UserService();
+            Users = getAllUsers.GetProfileUsers()._embedded.users;           
         }
         public static string FontFamily { get; set; }
         public static List<Catalog> Catalogues { get; set; }
@@ -24,7 +30,13 @@ namespace UI.Storage
         public static SimpleArticle SelectedSimpleArticle { get; private set; }
         public static Credential Credential { get; private set; }
         public static Cart Cart { get; set; }
-        public static UserDetail SelectedUser { get; set; }
+        public static io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User SelectedUser { get; set; }
+
+        public static List<io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User> Users { get; set; }
+
+
+
+
 
         public static List<ProductEntry> GetProductEntries()
         {
@@ -104,5 +116,13 @@ namespace UI.Storage
         {
             InterplayStorage.Cart.ClearCart();
         }
+
+        public static List<io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User> GetAllUsers()
+        {
+            return Users;
+        }
+
+
+        
     }
 }
