@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace io.cloudloom.interplay.pos.Proxy.Contracts
+namespace Proxy.Contracts
 {
    public class Credential
     {

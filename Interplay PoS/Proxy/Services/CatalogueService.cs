@@ -1,7 +1,6 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Services;
-using io.cloudloom.interplay.pos.Proxy.Contracts.Catalogue;
-using ServiceStack;
-using io.cloudloom.interplay.pos.Proxy.Contracts;
+﻿using Proxy.Contracts.Catalogue;
+using Proxy.Contracts;
+using System.Collections.Generic;
 
 namespace Proxy.Services
 {
@@ -15,11 +14,11 @@ namespace Proxy.Services
             this.serviceClient = new InterplayJSonServiceClient(credential);
         }
 
-        public RootObject GetCatalogue()
+        public List<Catalogue> GetCatalogue()
         {
             serviceClient.BaseUri = baseUrl;
             RootObject catalogue = serviceClient.Get<RootObject>(string.Format("{0}{1}", baseUrl, "catalogs"));
-            return catalogue;
+            return catalogue._embedded.catalogs;
         }
     }
 }

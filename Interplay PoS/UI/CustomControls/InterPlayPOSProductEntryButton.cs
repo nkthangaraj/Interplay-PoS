@@ -1,4 +1,4 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Contracts.Catalogue;
+﻿using BL.Contracts.Catalogue;
 using System;
 using System.Collections.Generic;
 using System.Linq;

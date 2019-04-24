@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{DC19
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy", "Proxy\Proxy.csproj", "{5E82B3DA-7327-4D7C-827E-AEDD37BF6FB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "InterplayPOSBusiness\BL.csproj", "{A5A9687A-D16D-4241-98D5-36A5BE286CBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{582B002E-3D09-49A1-AED3-6F32292F47C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{5E82B3DA-7327-4D7C-827E-AEDD37BF6FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E82B3DA-7327-4D7C-827E-AEDD37BF6FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E82B3DA-7327-4D7C-827E-AEDD37BF6FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5A9687A-D16D-4241-98D5-36A5BE286CBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5A9687A-D16D-4241-98D5-36A5BE286CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5A9687A-D16D-4241-98D5-36A5BE286CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5A9687A-D16D-4241-98D5-36A5BE286CBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{582B002E-3D09-49A1-AED3-6F32292F47C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{582B002E-3D09-49A1-AED3-6F32292F47C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{582B002E-3D09-49A1-AED3-6F32292F47C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{582B002E-3D09-49A1-AED3-6F32292F47C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

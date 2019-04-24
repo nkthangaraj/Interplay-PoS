@@ -1,13 +1,11 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Contracts;
-using io.cloudloom.interplay.pos.Proxy.Contracts.Catalogue;
-using io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers;
-using io.cloudloom.interplay.pos.Proxy.Contracts.Carts;
-using io.cloudloom.interplay.pos.Proxy.Services;
-using Proxy.Contracts;
+﻿using Proxy.Contracts;
 using Proxy.Services;
 using System.Collections.Generic;
 using System.Linq;
 using UI.Model;
+using BL;
+using BL.Contracts.Catalogue;
+using BL.Contracts.User;
 
 namespace UI.Storage
 {
@@ -16,33 +14,25 @@ namespace UI.Storage
         static InterplayStorage()
         {
             Cart = new Cart();
-            CatalogueService service = new CatalogueService(new Credential { UserName = "admin", Password = "admin" });
-            Catalogues = service.GetCatalogue()._embedded.catalogs;
-            FontFamily = "Leelawadee";
-
-            UserService getAllUsers = new UserService();
-            Users = getAllUsers.GetProfileUsers()._embedded.users;           
+            CatalogueBL catalogueBL = new CatalogueBL();
+            Catalogues = catalogueBL.GetCatalogues();
+            FontFamily = "Leelawadee";     
         }
+
         public static string FontFamily { get; set; }
-        public static List<Catalog> Catalogues { get; set; }
-        public static Catalog SelectedCatalog { get; private set; }
+        public static List<Catalogue> Catalogues { get; set; }
+        public static Catalogue SelectedCatalog { get; private set; }
         public static ProductEntry SelectedProductEntry { get; private set; }
         public static SimpleArticle SelectedSimpleArticle { get; private set; }
         public static Credential Credential { get; private set; }
         public static Cart Cart { get; set; }
-        public static io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User SelectedUser { get; set; }
-
-        public static List<io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User> Users { get; set; }
-
-
-
-
+        public static User SelectedUser { get; set; }
 
         public static List<ProductEntry> GetProductEntries()
         {
             List<ProductEntry> productEntries = new List<ProductEntry>();
 
-            Catalog catalog = InterplayStorage.Catalogues
+             Catalogue catalog = InterplayStorage.Catalogues
                 .Where(catalogue => catalogue.name == InterplayStorage.SelectedCatalog.name).FirstOrDefault();
 
             if (catalog != null)
@@ -62,7 +52,7 @@ namespace UI.Storage
         {
             List<SimpleArticle> simpleArticles = new List<SimpleArticle>();
 
-            Catalog catalogue = InterplayStorage.Catalogues.Where(cat => cat.name == InterplayStorage.SelectedCatalog.name).FirstOrDefault();
+            Catalogue catalogue = InterplayStorage.Catalogues.Where(cat => cat.name == InterplayStorage.SelectedCatalog.name).FirstOrDefault();
 
             if (catalogue != null)
             {
@@ -71,7 +61,7 @@ namespace UI.Storage
                 {
                     foreach (ArticleEntry article in productEntry.articleEntries)
                     {
-                        if (article.simpleArticles != null)
+                        if (article.simpleArticles != null && article.simpleArticles.Count > 0)
                         {
                             simpleArticles.AddRange(article.simpleArticles);
                         }
@@ -117,12 +107,5 @@ namespace UI.Storage
             InterplayStorage.Cart.ClearCart();
         }
 
-        public static List<io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User> GetAllUsers()
-        {
-            return Users;
-        }
-
-
-        
     }
 }

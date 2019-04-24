@@ -1,14 +1,8 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Contracts;
-using io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers;
-using ServiceStack;
-using System;
+﻿using Proxy.Contracts;
+using Proxy.Contracts.User;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace io.cloudloom.interplay.pos.Proxy.Services
+namespace Proxy.Services
 {
     public class UserService
     {
@@ -25,21 +19,21 @@ namespace io.cloudloom.interplay.pos.Proxy.Services
             this.serviceClient = new InterplayJSonServiceClient(credential);
         }
 
-        public  User GetProfile()
+        public User GetProfile(Credential credential)
         {
             serviceClient.BaseUri = baseUrl;
-            string userNamePassword = Base64Encode(serviceClient.UserName + ":" + serviceClient.Password);
-            serviceClient.AddHeader("Authorization","Basic " +userNamePassword);
-            
-            User currentLoggedinUser = serviceClient.Get<User>(string.Format("{0}{1}", baseUrl, "me"));   
+            string userNamePassword = Base64Encode(credential.UserName + ":" + credential.Password);
+            serviceClient.AddHeader("Authorization", "Basic " + userNamePassword);
+
+            User currentLoggedinUser = serviceClient.Get<User>(string.Format("{0}{1}", baseUrl, "me"));
             return currentLoggedinUser;
         }
 
-        public RootObject GetProfileUsers()
+        public List<User> GetAllUsers()
         {
             serviceClient.BaseUri = baseUrl;
-            RootObject allUsers = serviceClient.Get<RootObject>(string.Format("{0}{1}", baseUrl, "users/all"));
-            return allUsers;
+            RootObject root = serviceClient.Get<RootObject>(string.Format("{0}{1}", baseUrl, "users/all"));
+            return root._embedded.users;
         }
         public static string Base64Encode(string plainText)
         {

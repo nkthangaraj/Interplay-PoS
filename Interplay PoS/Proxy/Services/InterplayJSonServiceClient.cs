@@ -1,4 +1,5 @@
 ﻿using io.cloudloom.interplay.pos.Proxy.Contracts;
+using Proxy.Contracts;
 using ServiceStack;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace io.cloudloom.interplay.pos.Proxy.Services
+namespace Proxy.Services
 {
     public class InterplayJSonServiceClient : JsonServiceClient
     {
@@ -26,6 +27,7 @@ namespace io.cloudloom.interplay.pos.Proxy.Services
             CookieContainer container = new CookieContainer();
             this.CookieContainer = container;
         }
+
         public InterplayJSonServiceClient(string CartService)
         {
             Credential credential = new Credential { UserName ="admin" , Password = "admin" };

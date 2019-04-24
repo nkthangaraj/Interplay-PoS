@@ -1,4 +1,5 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Contracts.Catalogue;
+﻿
+using BL.Contracts.Catalogue;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace UI.CustomControls
 {
     public class InterPlayPOSCatalogueButton : InterPlayPOSButton
     {
-        public Catalog catalogue { get; set; }
+        public Catalogue catalogue { get; set; }
     }
 }

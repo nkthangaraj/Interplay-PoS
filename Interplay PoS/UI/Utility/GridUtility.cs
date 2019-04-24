@@ -8,21 +8,22 @@ namespace Utility
 {
     public static class GridUtility
     {
-        public static void CreateCartDatagridView(DataGridView cartGrid, RootObject cart)
+        public static void CreateCartDatagridView(DataGridView cartGrid, Cart cart)
         {
             cartGrid.Rows.Clear();
 
-            foreach (var item in cart.lineItems)
+            foreach (Item item in cart.Items)
             {
                 cartGrid.Rows.Add(new object[]
-
                 {
-                    item.articleID,
-                    item.name,
-                    item.quantity//,
-                    //item.unitPrice.amount,
-                   // item.subTotal.amount
+                        item.ReferenceArticleId,
+                        item.ItemName,
+                        Convert.ToString(item.Quantity),
+                        Convert.ToString(item.UnitPrice),
+                        Convert.ToString(item.Total)
+
                 });
+
             }
         }
 

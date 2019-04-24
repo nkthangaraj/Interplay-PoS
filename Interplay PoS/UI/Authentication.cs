@@ -1,17 +1,10 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using UI.Utility;
+﻿using BL;
 using io.cloudloom.interplay.pos.ui;
+using Proxy.Contracts;
+using System;
+using System.Linq;
+using System.Windows.Forms;
 using UI.Storage;
-using io.cloudloom.interplay.pos.Proxy.Contracts;
 
 namespace UI
 {
@@ -22,28 +15,11 @@ namespace UI
             InitializeComponent();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private bool authenticate(string userName, string password)
         {
-            string password = this.txtPassword.Text;
+            UserBL userBL = new UserBL();
 
-            User user = this.authenticate(InterplayStorage.SelectedUser.username, password);
-
-            if(user is null)
-            {
-                lblInvalidUserMessage.Text = "Invalid PIN";
-            }
-
-            else
-            {
-                interplayMainForm posForm = new interplayMainForm();
-                posForm.Show();
-                this.Close();
-            }
-        }
-
-        private User authenticate(string userName, string password)
-        {
-            return AuthenticationUtility.Authenticate(
+            return userBL.Authenticate(
                 new Credential
                 {
                     UserName = userName,
@@ -53,13 +29,11 @@ namespace UI
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
-            if (txtPassword.Text.Count() == 6)
+            if (txtPassword.Text.Count() == 5)
             {
                 string password = this.txtPassword.Text;
 
-                User user = this.authenticate(InterplayStorage.SelectedUser.username, password);
-
-                if (user is null)
+                if (!this.authenticate(InterplayStorage.SelectedUser.username, password))
                 {
                     lblInvalidUserMessage.Text = "Invalid PIN";
                 }
@@ -67,9 +41,8 @@ namespace UI
                 else
                 {
                     interplayMainForm posForm = new interplayMainForm();
-                    //posForm.MdiParent = true;
                     posForm.Show();
-                    this.Close();                    
+                    this.Close();
                 }
             }
         }

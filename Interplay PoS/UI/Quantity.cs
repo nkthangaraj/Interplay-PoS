@@ -28,7 +28,7 @@ namespace UI
         {
             int quantity = Convert.ToInt16(this.txtQuantity.Text);
 
-           // InterplayStorage.Cart.Add(InterplayStorage.SelectedSimpleArticle, quantity);
+            InterplayStorage.Cart.Add(InterplayStorage.SelectedSimpleArticle, quantity);
             this.Close();
         }
     }

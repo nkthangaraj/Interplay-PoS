@@ -1,11 +1,5 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Services;
-using io.cloudloom.interplay.pos.Proxy.Contracts.Carts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Proxy.Contracts;
+using Proxy.Contracts.Cart;
 
 namespace Proxy.Services
 {
@@ -14,46 +8,46 @@ namespace Proxy.Services
         private const string baseUrl = "https://dev.interplay.loomws.net/";
         private InterplayJSonServiceClient serviceClient;
 
-        public CartsService()
+        public CartsService(Credential credential)
         {
-            this.serviceClient = new InterplayJSonServiceClient("Carts");
+            this.serviceClient = new InterplayJSonServiceClient(credential);
         }
 
-        public RootObject OpenCarts()
+        public Cart OpenCart()
         {
             serviceClient.BaseUri = baseUrl;
             string userNamePassword = Base64Encode(serviceClient.UserName + ":" + serviceClient.Password);
             serviceClient.AddHeader("Authorization", "Basic " + userNamePassword);
-            RootObject catalogue = serviceClient.Post<RootObject>(string.Format("{0}{1}", baseUrl,"carts"),null);
+            Cart catalogue = serviceClient.Post<Cart>(string.Format("{0}{1}", baseUrl,"carts"),null);
             return catalogue;
         }
 
 
-        public RootObject AddToCart(string cartId,string articleId, int quantity=1)
+        public Cart AddToCart(string cartId,string articleId, int quantity)
         {
             serviceClient.BaseUri = baseUrl;
             string userNamePassword = Base64Encode(serviceClient.UserName + ":" + serviceClient.Password);
             serviceClient.AddHeader("Authorization", "Basic " + userNamePassword);
             Items items = new Items() { articleId = articleId, quantity = quantity };
-            RootObject lineItems = serviceClient.Post<RootObject>(string.Format("{0}{1}", baseUrl, "carts/"+cartId+"/items"), items);
+            Cart lineItems = serviceClient.Post<Cart>(string.Format("{0}{1}", baseUrl, "carts/"+cartId+"/items"), items);
             return lineItems;
         }
 
-        public RootObject DeleteItemFromCart(string cartId, string articleId)
+        public Cart DeleteItemFromCart(string cartId, string articleId)
         {
             serviceClient.BaseUri = baseUrl;
             string userNamePassword = Base64Encode(serviceClient.UserName + ":" + serviceClient.Password);
             serviceClient.AddHeader("Authorization", "Basic " + userNamePassword);
-            RootObject lineItems = serviceClient.Delete<RootObject>(string.Format("{0}{1}", baseUrl, "carts/" + cartId + "/items/"+ articleId));
+            Cart lineItems = serviceClient.Delete<Cart>(string.Format("{0}{1}", baseUrl, "carts/" + cartId + "/items/"+ articleId));
             return lineItems;
         }
 
-        public RootObject CheckOutCartItems(string cartId)
+        public Cart CheckOutCartItems(string cartId)
         {
             serviceClient.BaseUri = baseUrl;
             string userNamePassword = Base64Encode(serviceClient.UserName + ":" + serviceClient.Password);
             serviceClient.AddHeader("Authorization", "Basic " + userNamePassword);
-            RootObject lineItems = serviceClient.Put<RootObject>(string.Format("{0}{1}", baseUrl, "carts/" + cartId + "/checkout"),null);
+            Cart lineItems = serviceClient.Put<Cart>(string.Format("{0}{1}", baseUrl, "carts/" + cartId + "/checkout"),null);
             return lineItems;
         }
 

@@ -48,8 +48,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -118,7 +124,6 @@
     <Compile Include="UserSelection.Designer.cs">
       <DependentUpon>UserSelection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utility\AuthenticationUtility.cs" />
     <Compile Include="Utility\GridUtility.cs" />
     <EmbeddedResource Include="ActiveCarts.resx">
       <DependentUpon>ActiveCarts.cs</DependentUpon>
@@ -172,6 +177,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\InterplayPOSBusiness\BL.csproj">
+      <Project>{a5a9687a-d16d-4241-98d5-36a5be286cbe}</Project>
+      <Name>BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Proxy\Proxy.csproj">
       <Project>{5e82b3da-7327-4d7c-827e-aedd37bf6fb3}</Project>
       <Name>Proxy</Name>

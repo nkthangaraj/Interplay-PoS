@@ -1,6 +1,6 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Contracts;
-using io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers;
-using io.cloudloom.interplay.pos.Proxy.Services;
+﻿using BL;
+using Proxy.Contracts;
+using Proxy.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +13,9 @@ namespace UI.Utility
     {
         const string AuthenticationError = "Invalid credentials, Please validate";
 
-        private static  User user;
+        private static  UserBL user;
 
-        public static User Authenticate(Credential credential)
+        public static UserBL Authenticate(Credential credential)
         {
             string errorMessage = string.Empty;
 

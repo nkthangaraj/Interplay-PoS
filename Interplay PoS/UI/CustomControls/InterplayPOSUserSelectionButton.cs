@@ -1,4 +1,4 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers;
+﻿using BL.Contracts.User;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

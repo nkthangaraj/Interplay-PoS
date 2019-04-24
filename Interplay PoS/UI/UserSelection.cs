@@ -1,16 +1,13 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Services;
+﻿
+using BL;
+using BL.Contracts.User;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 using UI.CustomControls;
 using UI.Storage;
-using Proxy.Contracts;
+
 
 namespace UI
 {
@@ -19,7 +16,6 @@ namespace UI
         public UserSelection()
         {
             InitializeComponent();
-           // AlignUI();
             PrepareUserSelectionview();
         }
 
@@ -31,19 +27,20 @@ namespace UI
 
         private void PrepareUserSelectionview()
         {
-            List<io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User> userDetails = this.GetUserDetail();
+            List<User> userDetails = this.GetUserDetail();
             this.CreateUserSelectionButtons(userDetails);
         }
-        private List<io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User> GetUserDetail()
-        {
-            List<io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User> allUsers = InterplayStorage.GetAllUsers();
 
+        private List<User> GetUserDetail()
+        {
+            UserBL userBL = new UserBL();
+            List<User> allUsers = userBL.GetAllUsers();
             return allUsers;
         }
 
-        private void CreateUserSelectionButtons(List<io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User> userDetails)
+        private void CreateUserSelectionButtons(List<User> userDetails)
         {
-            foreach(io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User detail in userDetails)
+            foreach (User detail in userDetails)
             {
                 InterplayPOSUserSelectionButton button = new InterplayPOSUserSelectionButton();
                 button.Text = detail.username;
@@ -56,7 +53,7 @@ namespace UI
 
         private void User_Button_Click(object sender, EventArgs e)
         {
-            io.cloudloom.interplay.pos.Proxy.Contracts.AllUsers.User user = ((InterplayPOSUserSelectionButton)sender).userDetail;
+            User user = ((InterplayPOSUserSelectionButton)sender).userDetail;
             InterplayStorage.SelectedUser = user;
             Authentication authForm = new Authentication();
             authForm.Show();

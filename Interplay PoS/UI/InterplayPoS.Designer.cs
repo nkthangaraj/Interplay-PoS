@@ -42,6 +42,11 @@ namespace io.cloudloom.interplay.pos.ui
             this.flowLayoutPanelCatagory = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelProducts = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelArticle = new System.Windows.Forms.FlowLayoutPanel();
+            this.rightTableLayoutPanelSearch = new System.Windows.Forms.TableLayoutPanel();
+            this.butLogout = new System.Windows.Forms.Button();
+            this.butActiveCarts = new System.Windows.Forms.Button();
+            this.butClear = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.left = new System.Windows.Forms.TableLayoutPanel();
             this.dgCart = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,30 +59,25 @@ namespace io.cloudloom.interplay.pos.ui
             this.lblTax = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.btnProceedToPay = new System.Windows.Forms.Button();
+            this.btnDecrease = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnNetTotal = new System.Windows.Forms.Button();
+            this.bnnIncrease = new System.Windows.Forms.Button();
             this.btnTax = new System.Windows.Forms.Button();
             this.btnTotal = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.tabPurchase = new System.Windows.Forms.TabPage();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.rightTableLayoutPanelSearch = new System.Windows.Forms.TableLayoutPanel();
-            this.butClear = new System.Windows.Forms.Button();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.butActiveCarts = new System.Windows.Forms.Button();
-            this.butLogout = new System.Windows.Forms.Button();
             this.mainInterposTablelayoutpanel = new System.Windows.Forms.TableLayoutPanel();
-            this.btnDecrease = new System.Windows.Forms.Button();
-            this.bnnIncrease = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.tabMainFormInterplayPoS.SuspendLayout();
             this.tabSales.SuspendLayout();
             this.tblLayout_Sales.SuspendLayout();
             this.right.SuspendLayout();
+            this.rightTableLayoutPanelSearch.SuspendLayout();
             this.left.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCart)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            this.rightTableLayoutPanelSearch.SuspendLayout();
             this.mainInterposTablelayoutpanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -177,6 +177,81 @@ namespace io.cloudloom.interplay.pos.ui
             this.flowLayoutPanelArticle.Size = new System.Drawing.Size(543, 72);
             this.flowLayoutPanelArticle.TabIndex = 2;
             // 
+            // rightTableLayoutPanelSearch
+            // 
+            this.rightTableLayoutPanelSearch.ColumnCount = 4;
+            this.rightTableLayoutPanelSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.rightTableLayoutPanelSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.rightTableLayoutPanelSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.rightTableLayoutPanelSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.rightTableLayoutPanelSearch.Controls.Add(this.butLogout, 3, 0);
+            this.rightTableLayoutPanelSearch.Controls.Add(this.butActiveCarts, 2, 0);
+            this.rightTableLayoutPanelSearch.Controls.Add(this.butClear, 1, 0);
+            this.rightTableLayoutPanelSearch.Controls.Add(this.txtSearch, 0, 0);
+            this.rightTableLayoutPanelSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rightTableLayoutPanelSearch.Location = new System.Drawing.Point(0, 0);
+            this.rightTableLayoutPanelSearch.Margin = new System.Windows.Forms.Padding(0);
+            this.rightTableLayoutPanelSearch.Name = "rightTableLayoutPanelSearch";
+            this.rightTableLayoutPanelSearch.RowCount = 1;
+            this.rightTableLayoutPanelSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rightTableLayoutPanelSearch.Size = new System.Drawing.Size(543, 35);
+            this.rightTableLayoutPanelSearch.TabIndex = 3;
+            // 
+            // butLogout
+            // 
+            this.butLogout.BackColor = System.Drawing.Color.Orchid;
+            this.butLogout.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.butLogout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.butLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.butLogout.Font = new System.Drawing.Font("Leelawadee", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butLogout.Location = new System.Drawing.Point(408, 3);
+            this.butLogout.Name = "butLogout";
+            this.butLogout.Size = new System.Drawing.Size(132, 29);
+            this.butLogout.TabIndex = 5;
+            this.butLogout.Text = "Logout";
+            this.butLogout.UseVisualStyleBackColor = false;
+            this.butLogout.Click += new System.EventHandler(this.butLogout_Click);
+            // 
+            // butActiveCarts
+            // 
+            this.butActiveCarts.BackColor = System.Drawing.Color.DodgerBlue;
+            this.butActiveCarts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.butActiveCarts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.butActiveCarts.Font = new System.Drawing.Font("Leelawadee", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butActiveCarts.Location = new System.Drawing.Point(273, 3);
+            this.butActiveCarts.Name = "butActiveCarts";
+            this.butActiveCarts.Size = new System.Drawing.Size(129, 29);
+            this.butActiveCarts.TabIndex = 4;
+            this.butActiveCarts.Text = "Active Carts";
+            this.butActiveCarts.UseVisualStyleBackColor = false;
+            this.butActiveCarts.Click += new System.EventHandler(this.butActiveCarts_Click);
+            // 
+            // butClear
+            // 
+            this.butClear.BackColor = System.Drawing.Color.DodgerBlue;
+            this.butClear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.butClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.butClear.Font = new System.Drawing.Font("Leelawadee", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butClear.Location = new System.Drawing.Point(138, 3);
+            this.butClear.Name = "butClear";
+            this.butClear.Size = new System.Drawing.Size(129, 29);
+            this.butClear.TabIndex = 2;
+            this.butClear.Text = "Clear";
+            this.butClear.UseVisualStyleBackColor = false;
+            this.butClear.Click += new System.EventHandler(this.butClear_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearch.Font = new System.Drawing.Font("Leelawadee", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(0, 0);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(0);
+            this.txtSearch.Multiline = true;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(135, 35);
+            this.txtSearch.TabIndex = 3;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // left
             // 
             this.left.ColumnCount = 1;
@@ -235,7 +310,6 @@ namespace io.cloudloom.interplay.pos.ui
             this.dgCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCart.Size = new System.Drawing.Size(353, 239);
             this.dgCart.TabIndex = 2;
-            this.dgCart.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCart_CellClick);
             // 
             // Id
             // 
@@ -341,6 +415,21 @@ namespace io.cloudloom.interplay.pos.ui
             this.btnProceedToPay.UseVisualStyleBackColor = false;
             this.btnProceedToPay.Click += new System.EventHandler(this.btnProceedToPay_Click);
             // 
+            // btnDecrease
+            // 
+            this.btnDecrease.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnDecrease.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDecrease.BackgroundImage")));
+            this.btnDecrease.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDecrease.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnDecrease.FlatAppearance.BorderSize = 0;
+            this.btnDecrease.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDecrease.Location = new System.Drawing.Point(73, 3);
+            this.btnDecrease.Name = "btnDecrease";
+            this.btnDecrease.Size = new System.Drawing.Size(61, 33);
+            this.btnDecrease.TabIndex = 1;
+            this.btnDecrease.UseVisualStyleBackColor = false;
+            this.btnDecrease.Click += new System.EventHandler(this.btnDecrease_Click);
+            // 
             // btnClear
             // 
             this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -370,6 +459,20 @@ namespace io.cloudloom.interplay.pos.ui
             this.btnNetTotal.TabIndex = 9;
             this.btnNetTotal.Text = "0.0";
             this.btnNetTotal.UseVisualStyleBackColor = false;
+            // 
+            // bnnIncrease
+            // 
+            this.bnnIncrease.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bnnIncrease.BackgroundImage")));
+            this.bnnIncrease.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bnnIncrease.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.bnnIncrease.FlatAppearance.BorderSize = 0;
+            this.bnnIncrease.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnnIncrease.Location = new System.Drawing.Point(143, 3);
+            this.bnnIncrease.Name = "bnnIncrease";
+            this.bnnIncrease.Size = new System.Drawing.Size(61, 33);
+            this.bnnIncrease.TabIndex = 0;
+            this.bnnIncrease.UseVisualStyleBackColor = true;
+            this.bnnIncrease.Click += new System.EventHandler(this.bnnIncrease_Click);
             // 
             // btnTax
             // 
@@ -401,6 +504,19 @@ namespace io.cloudloom.interplay.pos.ui
             this.btnTotal.Text = "0.0";
             this.btnTotal.UseVisualStyleBackColor = false;
             // 
+            // btnRemove
+            // 
+            this.btnRemove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRemove.BackgroundImage")));
+            this.btnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRemove.FlatAppearance.BorderSize = 0;
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.Location = new System.Drawing.Point(3, 3);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(64, 33);
+            this.btnRemove.TabIndex = 4;
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
             // tabPurchase
             // 
             this.tabPurchase.Location = new System.Drawing.Point(4, 44);
@@ -418,79 +534,6 @@ namespace io.cloudloom.interplay.pos.ui
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn1.Width = 50;
             // 
-            // rightTableLayoutPanelSearch
-            // 
-            this.rightTableLayoutPanelSearch.ColumnCount = 4;
-            this.rightTableLayoutPanelSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.rightTableLayoutPanelSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.rightTableLayoutPanelSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.rightTableLayoutPanelSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.rightTableLayoutPanelSearch.Controls.Add(this.butLogout, 3, 0);
-            this.rightTableLayoutPanelSearch.Controls.Add(this.butActiveCarts, 2, 0);
-            this.rightTableLayoutPanelSearch.Controls.Add(this.butClear, 1, 0);
-            this.rightTableLayoutPanelSearch.Controls.Add(this.txtSearch, 0, 0);
-            this.rightTableLayoutPanelSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rightTableLayoutPanelSearch.Location = new System.Drawing.Point(0, 0);
-            this.rightTableLayoutPanelSearch.Margin = new System.Windows.Forms.Padding(0);
-            this.rightTableLayoutPanelSearch.Name = "rightTableLayoutPanelSearch";
-            this.rightTableLayoutPanelSearch.RowCount = 1;
-            this.rightTableLayoutPanelSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.rightTableLayoutPanelSearch.Size = new System.Drawing.Size(543, 35);
-            this.rightTableLayoutPanelSearch.TabIndex = 3;
-            // 
-            // butClear
-            // 
-            this.butClear.BackColor = System.Drawing.Color.DodgerBlue;
-            this.butClear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.butClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butClear.Font = new System.Drawing.Font("Leelawadee", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butClear.Location = new System.Drawing.Point(138, 3);
-            this.butClear.Name = "butClear";
-            this.butClear.Size = new System.Drawing.Size(129, 29);
-            this.butClear.TabIndex = 2;
-            this.butClear.Text = "Clear";
-            this.butClear.UseVisualStyleBackColor = false;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSearch.Font = new System.Drawing.Font("Leelawadee", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(0, 0);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(0);
-            this.txtSearch.Multiline = true;
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(135, 35);
-            this.txtSearch.TabIndex = 3;
-            // 
-            // butActiveCarts
-            // 
-            this.butActiveCarts.BackColor = System.Drawing.Color.DodgerBlue;
-            this.butActiveCarts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.butActiveCarts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butActiveCarts.Font = new System.Drawing.Font("Leelawadee", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butActiveCarts.Location = new System.Drawing.Point(273, 3);
-            this.butActiveCarts.Name = "butActiveCarts";
-            this.butActiveCarts.Size = new System.Drawing.Size(129, 29);
-            this.butActiveCarts.TabIndex = 4;
-            this.butActiveCarts.Text = "Active Carts";
-            this.butActiveCarts.UseVisualStyleBackColor = false;
-            this.butActiveCarts.Click += new System.EventHandler(this.butActiveCarts_Click);
-            // 
-            // butLogout
-            // 
-            this.butLogout.BackColor = System.Drawing.Color.Orchid;
-            this.butLogout.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.butLogout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.butLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butLogout.Font = new System.Drawing.Font("Leelawadee", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butLogout.Location = new System.Drawing.Point(408, 3);
-            this.butLogout.Name = "butLogout";
-            this.butLogout.Size = new System.Drawing.Size(132, 29);
-            this.butLogout.TabIndex = 5;
-            this.butLogout.Text = "Logout";
-            this.butLogout.UseVisualStyleBackColor = false;
-            this.butLogout.Click += new System.EventHandler(this.butLogout_Click);
-            // 
             // mainInterposTablelayoutpanel
             // 
             this.mainInterposTablelayoutpanel.ColumnCount = 1;
@@ -504,48 +547,6 @@ namespace io.cloudloom.interplay.pos.ui
             this.mainInterposTablelayoutpanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.mainInterposTablelayoutpanel.Size = new System.Drawing.Size(934, 463);
             this.mainInterposTablelayoutpanel.TabIndex = 1;
-            // 
-            // btnDecrease
-            // 
-            this.btnDecrease.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnDecrease.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDecrease.BackgroundImage")));
-            this.btnDecrease.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDecrease.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnDecrease.FlatAppearance.BorderSize = 0;
-            this.btnDecrease.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDecrease.Location = new System.Drawing.Point(73, 3);
-            this.btnDecrease.Name = "btnDecrease";
-            this.btnDecrease.Size = new System.Drawing.Size(61, 33);
-            this.btnDecrease.TabIndex = 1;
-            this.btnDecrease.UseVisualStyleBackColor = false;
-            this.btnDecrease.Click += new System.EventHandler(this.btnDecrease_Click);
-            // 
-            // bnnIncrease
-            // 
-            this.bnnIncrease.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bnnIncrease.BackgroundImage")));
-            this.bnnIncrease.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bnnIncrease.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.bnnIncrease.FlatAppearance.BorderSize = 0;
-            this.bnnIncrease.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bnnIncrease.Location = new System.Drawing.Point(143, 3);
-            this.bnnIncrease.Name = "bnnIncrease";
-            this.bnnIncrease.Size = new System.Drawing.Size(61, 33);
-            this.bnnIncrease.TabIndex = 0;
-            this.bnnIncrease.UseVisualStyleBackColor = true;
-            this.bnnIncrease.Click += new System.EventHandler(this.bnnIncrease_Click);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRemove.BackgroundImage")));
-            this.btnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRemove.FlatAppearance.BorderSize = 0;
-            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemove.Location = new System.Drawing.Point(3, 3);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(64, 33);
-            this.btnRemove.TabIndex = 4;
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // dataGridViewImageColumn2
             // 
@@ -566,17 +567,16 @@ namespace io.cloudloom.interplay.pos.ui
             this.ShowIcon = false;
             this.Text = "InterplayPoS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.interplayMainForm_Load);
             this.tabMainFormInterplayPoS.ResumeLayout(false);
             this.tabSales.ResumeLayout(false);
             this.tblLayout_Sales.ResumeLayout(false);
             this.right.ResumeLayout(false);
+            this.rightTableLayoutPanelSearch.ResumeLayout(false);
+            this.rightTableLayoutPanelSearch.PerformLayout();
             this.left.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgCart)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.rightTableLayoutPanelSearch.ResumeLayout(false);
-            this.rightTableLayoutPanelSearch.PerformLayout();
             this.mainInterposTablelayoutpanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
