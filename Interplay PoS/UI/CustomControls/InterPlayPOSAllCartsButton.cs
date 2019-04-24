@@ -1,4 +1,4 @@
-﻿using io.cloudloom.interplay.pos.Proxy.Contracts.Carts;
+﻿//using io.cloudloom.interplay.pos.Proxy.Contracts.Carts;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,6 +18,6 @@ namespace UI.CustomControls
             ForeColor = Color.White;
            
         }
-        public Proxy.Contracts.ActiveCarts.Cart Cart { get; set; }
+        //public Proxy.Contracts.ActiveCarts.Cart Cart { get; set; }
     }
 }

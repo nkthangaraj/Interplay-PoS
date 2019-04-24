@@ -28,17 +28,10 @@ namespace Proxy.Services
             this.CookieContainer = container;
         }
 
-        public InterplayJSonServiceClient(string CartService)
-        {
-            Credential credential = new Credential { UserName ="admin" , Password = "admin" };
-            this.SetCredentials(credential.UserName, credential.Password);
-            CookieContainer container = new CookieContainer();
-            this.CookieContainer = container;
-        }
         public override TResponse Get<TResponse>(string relativeOrAbsoluteUrl)
         {
-                TResponse response =  base.Get<TResponse>(relativeOrAbsoluteUrl);
-                return response;
+               TResponse response = base.Get<TResponse>(relativeOrAbsoluteUrl);
+               return response;
         }       
 
 

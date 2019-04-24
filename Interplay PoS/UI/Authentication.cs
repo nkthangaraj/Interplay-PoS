@@ -17,7 +17,8 @@ namespace UI
 
         private bool authenticate(string userName, string password)
         {
-            UserBL userBL = new UserBL();
+            UserBL userBL = new UserBL(
+                new Credential { UserName = "admin", Password = "admin" });
 
             return userBL.Authenticate(
                 new Credential
@@ -33,13 +34,14 @@ namespace UI
             {
                 string password = this.txtPassword.Text;
 
-                if (!this.authenticate(InterplayStorage.SelectedUser.username, password))
+                if (!this.authenticate(InterplayStorage.SelectedUser.UserName, password))
                 {
                     lblInvalidUserMessage.Text = "Invalid PIN";
                 }
 
                 else
                 {
+                    InterplayStorage.SelectedUser.Password = password;
                     interplayMainForm posForm = new interplayMainForm();
                     posForm.Show();
                     this.Close();

@@ -11,10 +11,12 @@ namespace BL
     {
         CatalogueService service;
 
-        public CatalogueBL()
+        public CatalogueBL(Credential credential)
         {
-            this.service = new CatalogueService(new Credential { UserName = "admin", Password = "admin"});
-            this.ConfigAutoMapper();
+            credential.UserName = "admin";
+            credential.Password = "admin";
+
+            this.service = new CatalogueService(credential);
         }
 
         public List<BusinessCatalogueContract.Catalogue> GetCatalogues()
@@ -39,20 +41,6 @@ namespace BL
             List<BusinessCatalogueContract.Catalogue> catalogues)
         {
             return new List<ProxyCatalogueContract.Catalogue>();
-        }
-
-        private void ConfigAutoMapper()
-        {
-            Mapper.Initialize(confg =>
-            {
-                confg.CreateMap<ProxyCatalogueContract.Property, BusinessCatalogueContract.Property>();
-                confg.CreateMap<ProxyCatalogueContract.SimpleArticle, BusinessCatalogueContract.SimpleArticle>();
-                confg.CreateMap<ProxyCatalogueContract.ArticleEntry, BusinessCatalogueContract.ArticleEntry>();
-                confg.CreateMap<ProxyCatalogueContract.ProductEntry, BusinessCatalogueContract.ProductEntry>();
-                confg.CreateMap<ProxyCatalogueContract.Catalogue, BusinessCatalogueContract.Catalogue>();
-            }
-            );
-
         }
 
         # endregion

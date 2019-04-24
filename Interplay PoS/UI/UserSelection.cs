@@ -1,6 +1,7 @@
 ﻿
 using BL;
 using BL.Contracts.User;
+using Proxy.Contracts;
 using System;
 using System.Collections.Generic;
 
@@ -15,6 +16,7 @@ namespace UI
     {
         public UserSelection()
         {
+            Utility.InterplayPOSMapper.Configure();
             InitializeComponent();
             PrepareUserSelectionview();
         }
@@ -33,7 +35,9 @@ namespace UI
 
         private List<User> GetUserDetail()
         {
-            UserBL userBL = new UserBL();
+            UserBL userBL = new UserBL(
+                new Credential { UserName="admin", Password = "admin"});
+
             List<User> allUsers = userBL.GetAllUsers();
             return allUsers;
         }
@@ -54,7 +58,7 @@ namespace UI
         private void User_Button_Click(object sender, EventArgs e)
         {
             User user = ((InterplayPOSUserSelectionButton)sender).userDetail;
-            InterplayStorage.SelectedUser = user;
+            InterplayStorage.SelectedUser = new Credential() { UserName = user.username };
             Authentication authForm = new Authentication();
             authForm.Show();
             authForm.Focus();

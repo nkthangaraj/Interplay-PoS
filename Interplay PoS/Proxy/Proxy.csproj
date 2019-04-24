@@ -73,8 +73,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\Carts.cs" />
-    <Compile Include="Contracts\ActiveCarts.cs" />
     <Compile Include="Contracts\Cart\Embedded.cs" />
     <Compile Include="Contracts\Cart\Items.cs" />
     <Compile Include="Contracts\Cart\LineItem.cs" />

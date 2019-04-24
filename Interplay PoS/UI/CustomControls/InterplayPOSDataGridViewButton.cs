@@ -8,8 +8,8 @@ using UI.Model;
 
 namespace UI.CustomControls
 {
-    public class InterplayPOSDataGridViewButton : DataGridViewButtonColumn
-    {
-        public Item item { get; set; }
-    }
+    //public class InterplayPOSDataGridViewButton : DataGridViewButtonColumn
+    //{
+    //    public Item item { get; set; }
+    //}
 }

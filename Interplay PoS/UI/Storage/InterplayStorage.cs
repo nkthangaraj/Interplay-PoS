@@ -6,6 +6,7 @@ using UI.Model;
 using BL;
 using BL.Contracts.Catalogue;
 using BL.Contracts.User;
+using UI.Model.Cart;
 
 namespace UI.Storage
 {
@@ -13,20 +14,34 @@ namespace UI.Storage
     {
         static InterplayStorage()
         {
-            Cart = new Cart();
-            CatalogueBL catalogueBL = new CatalogueBL();
-            Catalogues = catalogueBL.GetCatalogues();
             FontFamily = "Leelawadee";     
         }
 
         public static string FontFamily { get; set; }
-        public static List<Catalogue> Catalogues { get; set; }
+        private static List<Catalogue> _catalogues;
+        public static List<Catalogue> Catalogues
+        {
+            get
+            {
+                if (_catalogues == null)
+                {
+                    CatalogueBL catalogueBL = new CatalogueBL(
+                        new Credential { UserName = InterplayStorage.SelectedUser.UserName, Password = InterplayStorage.SelectedUser.Password });
+                    _catalogues = catalogueBL.GetCatalogues();
+                }
+                return _catalogues;
+            }
+            set
+            {
+                _catalogues = value;
+            }
+        }
         public static Catalogue SelectedCatalog { get; private set; }
         public static ProductEntry SelectedProductEntry { get; private set; }
         public static SimpleArticle SelectedSimpleArticle { get; private set; }
         public static Credential Credential { get; private set; }
         public static Cart Cart { get; set; }
-        public static User SelectedUser { get; set; }
+        public static Credential SelectedUser { get; set; }
 
         public static List<ProductEntry> GetProductEntries()
         {
@@ -104,7 +119,7 @@ namespace UI.Storage
 
         public static void ClearCart()
         {
-            InterplayStorage.Cart.ClearCart();
+           // InterplayStorage.Cart.ClearCart();
         }
 
     }

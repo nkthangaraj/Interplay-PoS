@@ -10,9 +10,9 @@ namespace BL
     {
         UserService userService;
 
-        public UserBL()
+        public UserBL(Credential credential)
         {
-            userService = new UserService(new Credential { UserName = "admin", Password = "admin" });
+            userService = new UserService(credential);
         }
 
         public bool Authenticate(Credential credential)

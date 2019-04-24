@@ -6,10 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using UI;
-using UI.ConsumeCarts;
+//using UI.ConsumeCarts;
 using UI.CustomControls;
+using UI.Model.Cart;
 using UI.Storage;
-using Utility;
 
 namespace io.cloudloom.interplay.pos.ui
 {
@@ -21,12 +21,35 @@ namespace io.cloudloom.interplay.pos.ui
         private bool mouseUp = false;
         private const int holdButtonDuration = 2000;
 
-        private CartsOperation cartsOperation;
-
         public interplayMainForm()
         {
             InitializeComponent();
+            AttachEventsForCartChanges();
             CreateCatalogueButtons();
+        }
+
+        private void AttachEventsForCartChanges()
+        {
+            Cart.CartInstance.cartItemUpdated += Cart_cartItemUpdated;
+        }
+
+        private void CartInstance_cartItemUpdated(Cart cart)
+        {
+            this.btnTotal.Text = Convert.ToString(cart.subTotal.amount);
+            this.btnTax.Text = "0.0";
+            this.btnNetTotal.Text = Convert.ToString(cart.subTotal.amount);
+        }
+
+        private void Cart_cartItemUpdated(Cart cart)
+        {
+            this.btnTotal.Text = Convert.ToString(cart.subTotal.amount);
+            this.btnTax.Text = "0.0";
+            this.btnNetTotal.Text = Convert.ToString(cart.subTotal.amount);
+        }
+
+        private void Cart_newCartCreated(Cart cart)
+        {
+            //((InterplayPOSDataGridView)this.dgCart).cart = cart;
         }
 
         private void CreateCatalogueButtons()
@@ -135,7 +158,12 @@ namespace io.cloudloom.interplay.pos.ui
 
             if (stopWatch.ElapsedMilliseconds < holdButtonDuration)
             {
-                InterplayStorage.Cart.Add(InterplayStorage.SelectedSimpleArticle, 1);
+                ((InterplayPOSDataGridView)this.dgCart).cart.UpdateItems(
+                    new Items
+                    {
+                        articleId = InterplayStorage.SelectedSimpleArticle.referenceArticleId,
+                        quantity = 1
+                    });
             }
 
             else
@@ -143,10 +171,6 @@ namespace io.cloudloom.interplay.pos.ui
                 Quantity quantityForm = new Quantity();
                 quantityForm.ShowDialog();
             }
-
-            GridUtility.CreateCartDatagridView(this.dgCart, InterplayStorage.Cart);
-            UpdateNetAmountInUI();
-
         }
 
         private void btnTest_MouseUp(object sender, MouseEventArgs e)
@@ -154,35 +178,16 @@ namespace io.cloudloom.interplay.pos.ui
             mouseUp = true;
         }
 
-        private void UpdateNetAmountInUI()
-        {
-            this.btnTotal.Text = Convert.ToString(InterplayStorage.Cart.NetAmount);
-            this.btnTax.Text = "0.0";
-            this.btnNetTotal.Text = Convert.ToString(InterplayStorage.Cart.NetAmount);
-        }
-
         private void butClear_Click(object sender, EventArgs e)
         {
             this.txtSearch.Clear();
         }
 
-
-        private void btnClear_Click_1(object sender, EventArgs e)
-        {
-            GridUtility.ClearCartGrid(this.dgCart);
-            InterplayStorage.Cart.ClearCart();
-            this.UpdateNetAmountInUI();
-        }
-
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if (this.dgCart.SelectedRows.Count > 0)
-            {
-                string selectedArticleId = Convert.ToString(this.dgCart.SelectedRows[0].Cells[0].Value);
-                InterplayStorage.Cart.RemoveItem(selectedArticleId);
-                GridUtility.CreateCartDatagridView(this.dgCart, InterplayStorage.Cart);
-                this.UpdateNetAmountInUI();
-            }
+            Cart.CartInstance.lineItems.ForEach(
+                item => Cart.CartInstance.UpdateItems(
+                new Items { articleId = item.articleID, quantity = -item.quantity }));
         }
 
         private void btnDecrease_Click(object sender, EventArgs e)
@@ -190,9 +195,7 @@ namespace io.cloudloom.interplay.pos.ui
             if (this.dgCart.SelectedRows.Count > 0)
             {
                 string selectedArticleId = Convert.ToString(this.dgCart.SelectedRows[0].Cells[0].Value);
-                InterplayStorage.Cart.UpdateQuantity(selectedArticleId, -1);
-                GridUtility.CreateCartDatagridView(this.dgCart, InterplayStorage.Cart);
-                this.UpdateNetAmountInUI();
+                Cart.CartInstance.UpdateItems(new Items { articleId = selectedArticleId, quantity = -1 });
             }
         }
 
@@ -201,19 +204,17 @@ namespace io.cloudloom.interplay.pos.ui
             if (this.dgCart.SelectedRows.Count > 0)
             {
                 string selectedArticleId = Convert.ToString(this.dgCart.SelectedRows[0].Cells[0].Value);
-                InterplayStorage.Cart.UpdateQuantity(selectedArticleId, 1);
-                GridUtility.CreateCartDatagridView(this.dgCart, InterplayStorage.Cart);
-                this.UpdateNetAmountInUI();
+                Cart.CartInstance.UpdateItems(new Items { articleId = selectedArticleId, quantity = 1 });
             }
         }
 
         private void btnProceedToPay_Click(object sender, EventArgs e)
         {
-            io.cloudloom.interplay.pos.Proxy.Contracts.Carts.RootObject checkoutCartItem = cartsOperation.CheckoutCartItems();
-            if (checkoutCartItem.type == "SaleOrder")
-            {
-                this.dgCart.Rows.Clear();
-            }
+            //    io.cloudloom.interplay.pos.Proxy.Contracts.Carts.RootObject checkoutCartItem = cartsOperation.CheckoutCartItems();
+            //    if (checkoutCartItem.type == "SaleOrder")
+            //    {
+            //        this.dgCart.Rows.Clear();
+            //    }
         }
 
         private void butLogout_Click(object sender, EventArgs e)
@@ -221,48 +222,22 @@ namespace io.cloudloom.interplay.pos.ui
             this.Close();
         }
 
-        ActiveCarts allCarts;
+        // ActiveCarts allCarts;
         private void butActiveCarts_Click(object sender, EventArgs e)
         {
-
-            var checkoutCartItem = cartsOperation.GetAllActiveCartsByUser();
-
-            allCarts = new ActiveCarts();
-            //allCarts.ActiveCart += new ActiveCarts.SelectedActiveCart(SelectedActiveCartdetails);
-            allCarts.CreateUserSelectionButtons(checkoutCartItem);
-            allCarts.ShowDialog();
-            allCarts.Focus();
-
-
+            ActiveCarts activeCarts = new ActiveCarts();
+            activeCarts.Show();
         }
 
-        //private void SelectedActiveCartdetails(Cart cart)
-        //{
-        //    io.cloudloom.interplay.pos.Proxy.Contracts.Carts.RootObject currentCartItem = new Proxy.Contracts.Carts.RootObject();
+        private void btnDeleteArticle_Click(object sender, EventArgs e)
+        {
+            if (this.dgCart.SelectedRows.Count > 0)
+            {
+                string selectedArticleId = Convert.ToString(this.dgCart.SelectedRows[0].Cells[0].Value);
+                int quantity = Convert.ToInt16(this.dgCart.SelectedRows[0].Cells[2].Value);
 
-        //   List< io.cloudloom.interplay.pos.Proxy.Contracts.Carts.LineItem> line= new List<io.cloudloom.interplay.pos.Proxy.Contracts.Carts.LineItem>();
-
-        //    foreach (var lineItem in cart.lineItems)
-        //    {
-        //        line.Add(new io.cloudloom.interplay.pos.Proxy.Contracts.Carts.LineItem
-        //        {
-        //            articleID = lineItem.articleID,
-        //            name = lineItem.name,
-        //            quantity = lineItem.quantity//
-        //        });
-
-
-        //        //line.subTotal.amount = 0;
-        //        //line.unitPrice.amount = 0;
-        //        //currentCartItem
-        //        // { articleID = lineItem.articleID, name = lineItem.name, quantity = lineItem.quantity, subTotal = new Proxy.Contracts.Carts.SubTotal() { amount = (int)lineItem.subTotal.amount }, unitPrice = new Proxy.Contracts.Carts.UnitPrice() { amount = (int)lineItem.unitPrice.amount } });
-
-        //    }
-        //    currentCartItem.lineItems = line;
-        //    InterplayStorage.Cart.Add(currentCartItem);
-        //    GridUtility.CreateCartDatagridView(this.dgCart, currentCartItem);
-        //    allCarts.Close();
-
-        //}
+                Cart.CartInstance.UpdateItems(new Items { articleId = selectedArticleId, quantity = -quantity });
+            }
+        }
     }
 }

@@ -178,6 +178,19 @@
         "runtime": {
           "bin/placeholder/Proxy.dll": {}
         }
+      },
+      "UI/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "BL": "1.0.0",
+          "Proxy": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/UI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UI.dll": {}
+        }
       }
     }
   },
@@ -954,13 +967,19 @@
       "type": "project",
       "path": "../Proxy/Proxy.csproj",
       "msbuildProject": "../Proxy/Proxy.csproj"
+    },
+    "UI/1.0.0": {
+      "type": "project",
+      "path": "../UI/UI.csproj",
+      "msbuildProject": "../UI/UI.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
       "BL >= 1.0.0",
       "NETStandard.Library >= 2.0.3",
-      "Proxy >= 1.0.0"
+      "Proxy >= 1.0.0",
+      "UI >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -998,6 +1017,9 @@
             },
             "D:\\POS\\Interplay PoS\\Proxy\\Proxy.csproj": {
               "projectPath": "D:\\POS\\Interplay PoS\\Proxy\\Proxy.csproj"
+            },
+            "D:\\POS\\Interplay PoS\\UI\\UI.csproj": {
+              "projectPath": "D:\\POS\\Interplay PoS\\UI\\UI.csproj"
             }
           }
         }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Model.Cart;
 using UI.Storage;
 
 namespace UI
@@ -27,8 +28,8 @@ namespace UI
         private void btnQuantityOK_Click(object sender, EventArgs e)
         {
             int quantity = Convert.ToInt16(this.txtQuantity.Text);
-
-            InterplayStorage.Cart.Add(InterplayStorage.SelectedSimpleArticle, quantity);
+            Cart cart = Cart.CartInstance;
+            cart.UpdateItems(new Items { articleId = InterplayStorage.SelectedSimpleArticle.referenceArticleId, quantity = quantity });
             this.Close();
         }
     }

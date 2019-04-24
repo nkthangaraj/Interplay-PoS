@@ -48,7 +48,7 @@ namespace io.cloudloom.interplay.pos.ui
             this.butClear = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.left = new System.Windows.Forms.TableLayoutPanel();
-            this.dgCart = new System.Windows.Forms.DataGridView();
+            this.dgCart = new UI.CustomControls.InterplayPOSDataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -443,7 +443,7 @@ namespace io.cloudloom.interplay.pos.ui
             this.btnClear.TabIndex = 2;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = false;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click_1);
+            this.btnClear.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnNetTotal
             // 
@@ -515,7 +515,7 @@ namespace io.cloudloom.interplay.pos.ui
             this.btnRemove.Size = new System.Drawing.Size(64, 33);
             this.btnRemove.TabIndex = 4;
             this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            this.btnRemove.Click += new System.EventHandler(this.btnDeleteArticle_Click);
             // 
             // tabPurchase
             // 
@@ -590,7 +590,6 @@ namespace io.cloudloom.interplay.pos.ui
         private System.Windows.Forms.TableLayoutPanel right;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.TableLayoutPanel left;
-        private System.Windows.Forms.DataGridView dgCart;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelCatagory;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelProducts;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelArticle;
@@ -618,6 +617,7 @@ namespace io.cloudloom.interplay.pos.ui
         private System.Windows.Forms.Button butLogout;
         private System.Windows.Forms.Button butActiveCarts;
         private System.Windows.Forms.TableLayoutPanel mainInterposTablelayoutpanel;
+        private InterplayPOSDataGridView dgCart;
     }
 }
 

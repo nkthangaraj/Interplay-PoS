@@ -1,5 +1,6 @@
 ﻿using Proxy.Contracts;
 using Proxy.Contracts.Cart;
+using System.Collections.Generic;
 
 namespace Proxy.Services
 {
@@ -18,46 +19,45 @@ namespace Proxy.Services
             serviceClient.BaseUri = baseUrl;
             string userNamePassword = Base64Encode(serviceClient.UserName + ":" + serviceClient.Password);
             serviceClient.AddHeader("Authorization", "Basic " + userNamePassword);
-            Cart catalogue = serviceClient.Post<Cart>(string.Format("{0}{1}", baseUrl,"carts"),null);
-            return catalogue;
+            Cart cart = serviceClient.Post<Cart>(string.Format("{0}{1}", baseUrl,"carts"),null);
+            return cart;
         }
 
 
-        public Cart AddToCart(string cartId,string articleId, int quantity)
+        public Cart AddItemsToCart(string cartId,Items items)
         {
             serviceClient.BaseUri = baseUrl;
             string userNamePassword = Base64Encode(serviceClient.UserName + ":" + serviceClient.Password);
             serviceClient.AddHeader("Authorization", "Basic " + userNamePassword);
-            Items items = new Items() { articleId = articleId, quantity = quantity };
-            Cart lineItems = serviceClient.Post<Cart>(string.Format("{0}{1}", baseUrl, "carts/"+cartId+"/items"), items);
-            return lineItems;
+            Cart cart = serviceClient.Post<Cart>(string.Format("{0}{1}", baseUrl, "carts/"+cartId+"/items"), items);
+            return cart;
         }
 
-        public Cart DeleteItemFromCart(string cartId, string articleId)
+        public Cart DeleteItemsFromCart(string cartId, Items items)
         {
             serviceClient.BaseUri = baseUrl;
             string userNamePassword = Base64Encode(serviceClient.UserName + ":" + serviceClient.Password);
             serviceClient.AddHeader("Authorization", "Basic " + userNamePassword);
-            Cart lineItems = serviceClient.Delete<Cart>(string.Format("{0}{1}", baseUrl, "carts/" + cartId + "/items/"+ articleId));
-            return lineItems;
+            Cart cart = serviceClient.Delete<Cart>(string.Format("{0}{1}", baseUrl, "carts/" + cartId + "/items/"+ items));
+            return cart;
         }
 
-        public Cart CheckOutCartItems(string cartId)
+        public Cart CheckOutCart(string cartId)
         {
             serviceClient.BaseUri = baseUrl;
             string userNamePassword = Base64Encode(serviceClient.UserName + ":" + serviceClient.Password);
             serviceClient.AddHeader("Authorization", "Basic " + userNamePassword);
-            Cart lineItems = serviceClient.Put<Cart>(string.Format("{0}{1}", baseUrl, "carts/" + cartId + "/checkout"),null);
-            return lineItems;
+            Cart cart = serviceClient.Put<Cart>(string.Format("{0}{1}", baseUrl, "carts/" + cartId + "/checkout"),null);
+            return cart;
         }
 
-        public Proxy.Contracts.ActiveCarts.RootObject GetUserActiveCarts()
+        public List<Cart> GetUserActiveCarts()
         {
             serviceClient.BaseUri = baseUrl;
             string userNamePassword = Base64Encode(serviceClient.UserName + ":" + serviceClient.Password);
             serviceClient.AddHeader("Authorization", "Basic " + userNamePassword);
-            Proxy.Contracts.ActiveCarts.RootObject lineItems = serviceClient.Get<Proxy.Contracts.ActiveCarts.RootObject>(string.Format("{0}{1}", baseUrl, "carts/" + "all" + "/status?"+"status=OPEN"));
-            return lineItems;
+            RootObject rootObject = serviceClient.Get<RootObject>(string.Format("{0}{1}", baseUrl, "carts/" + "all" + "/status?"+"status=OPEN"));
+            return rootObject._embedded.carts;
         }
 
 

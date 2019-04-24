@@ -28,36 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.activeCardsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dgActiveCart = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgActiveCart)).BeginInit();
             this.SuspendLayout();
             // 
-            // activeCardsFlowLayoutPanel
+            // tableLayoutPanel1
             // 
-            this.activeCardsFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.activeCardsFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.activeCardsFlowLayoutPanel.Name = "activeCardsFlowLayoutPanel";
-            this.activeCardsFlowLayoutPanel.Size = new System.Drawing.Size(484, 461);
-            this.activeCardsFlowLayoutPanel.TabIndex = 0;
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.dgActiveCart, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // dgActiveCart
+            // 
+            this.dgActiveCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgActiveCart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgActiveCart.Location = new System.Drawing.Point(3, 3);
+            this.dgActiveCart.Name = "dgActiveCart";
+            this.dgActiveCart.Size = new System.Drawing.Size(794, 444);
+            this.dgActiveCart.TabIndex = 0;
             // 
             // ActiveCarts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 461);
-            this.Controls.Add(this.activeCardsFlowLayoutPanel);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ActiveCarts";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ActiveCarts";
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgActiveCart)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel activeCardsFlowLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.DataGridView dgActiveCart;
     }
 }

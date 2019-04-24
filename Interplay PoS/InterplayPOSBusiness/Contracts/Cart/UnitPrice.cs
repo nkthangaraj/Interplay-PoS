@@ -8,7 +8,7 @@ namespace BL.Contracts.Cart
 {
     public class UnitPrice
     {
-        public int amount { get; set; }
+        public double amount { get; set; }
         public string currency { get; set; }
     }
 }

@@ -9,10 +9,10 @@ namespace Proxy.Services
         private const string baseUrl = "https://dev.interplay.loomws.net/";
         private InterplayJSonServiceClient serviceClient;
 
-        public UserService()
-        {
-            this.serviceClient = new InterplayJSonServiceClient();
-        }
+        //public UserService()
+        //{
+        //    this.serviceClient = new InterplayJSonServiceClient();
+        //}
 
         public UserService(Credential credential)
         {
