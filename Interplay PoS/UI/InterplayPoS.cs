@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using UI;
-//using UI.ConsumeCarts;
 using UI.CustomControls;
 using UI.Model.Cart;
 using UI.Storage;
@@ -15,18 +14,23 @@ namespace io.cloudloom.interplay.pos.ui
 {
     public partial class interplayMainForm : Form
     {
-        private const int REMOVE_COLUMN_INDEX = 6;
-        private const int ID_COLUMN = 0;
-
         private bool mouseUp = false;
         private const int holdButtonDuration = 2000;
 
         public interplayMainForm()
         {
-            InitializeComponent();
-            CreateCatalogueButtons();
-            Cart.CartInstance.CreateNewCart();
-            AttachEventsForCartChanges();
+            try
+            {
+                InitializeComponent();
+                CreateCatalogueButtons();
+                Cart.CartInstance.CreateNewCart();
+                AttachEventsForCartChanges();
+            }
+
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
         }
 
         private void AttachEventsForCartChanges()
@@ -45,7 +49,15 @@ namespace io.cloudloom.interplay.pos.ui
 
         private void CartInstance_cartSuspended()
         {
-            CreateZeroValuedCartUI();
+            try
+            {
+                CreateZeroValuedCartUI();
+            }
+
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
         }
 
         private void CreateZeroValuedCartUI()
@@ -57,11 +69,10 @@ namespace io.cloudloom.interplay.pos.ui
 
         private void PrepareUIForCart(Cart cart)
         {
-            if(cart.status == "OPEN")
+            if (cart.status == "OPEN" && cart.type == "Cart")
             {
                 this.PrepareUIForActiveCarts();
             }
-
             else
             {
                 this.PrepareUIForClosedCarts();
@@ -88,19 +99,42 @@ namespace io.cloudloom.interplay.pos.ui
 
         private void CartInstance_cartItemUpdated(Cart cart)
         {
-            this.UpdateCartDetails(cart);
+            try
+            {
+                this.UpdateCartDetails(cart);
+            }
+
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
         }
 
         private void CartInstance_activeCartLoaded(Cart cart)
         {
-            this.UpdateCartDetails(cart);
+            try
+            {
+                this.UpdateCartDetails(cart);
+            }
+
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
         }
 
         private void Cart_cartItemUpdated(Cart cart)
         {
-            this.UpdateCartDetails(cart);
-        }
+            try
+            {
+                this.UpdateCartDetails(cart);
+            }
 
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
+        }
 
         private void UpdateCartDetails(Cart cart)
         {
@@ -136,9 +170,16 @@ namespace io.cloudloom.interplay.pos.ui
 
         private void Catalogue_Button_Click(object sender, EventArgs e)
         {
-            InterplayStorage.SetSelectedCatalog(((InterPlayPOSCatalogueButton)sender).Text);
-            this.FormatSelectedItem((Button)sender);
-            this.CreateProductButtons();
+            try
+            {
+                InterplayStorage.SetSelectedCatalog(((InterPlayPOSCatalogueButton)sender).Text);
+                this.FormatSelectedItem((Button)sender);
+                this.CreateProductButtons();
+            }
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
         }
 
         private void FormatSelectedItem(Button button)
@@ -175,9 +216,16 @@ namespace io.cloudloom.interplay.pos.ui
 
         private void Product_Button_Click(object sender, EventArgs e)
         {
-            InterplayStorage.SetSelectedProductEntry(((InterPlayPOSProductEntryButton)sender).productEntry);
-            this.FormatSelectedItem((Button)sender);
-            this.CreateArticlebuttons();
+            try
+            {
+                InterplayStorage.SetSelectedProductEntry(((InterPlayPOSProductEntryButton)sender).productEntry);
+                this.FormatSelectedItem((Button)sender);
+                this.CreateArticlebuttons();
+            }
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
         }
 
         private void CreateArticlebuttons()
@@ -197,41 +245,57 @@ namespace io.cloudloom.interplay.pos.ui
 
         private void Article_Mouse_Up(object sender, MouseEventArgs e)
         {
-            mouseUp = true;
-            this.FormatSelectedItem((Button)sender);
+            try
+            {
+                mouseUp = true;
+                this.FormatSelectedItem((Button)sender);
+            }
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            this.PrepareUIForCreateButtons();
-            this.CreateProductButtons(InterplayStorage.GetProductEntries(txtSearch.Text));
+            try
+            {
+                this.PrepareUIForCreateButtons();
+                this.CreateProductButtons(InterplayStorage.GetProductEntries(txtSearch.Text));
+            }
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
         }
 
         private void Article_Mouse_Down(object sender, MouseEventArgs e)
         {
-            InterplayStorage.SetSelectedSimpleArticle(((InterplayPOSArticleButton)sender).simpleArticle);
-
-            mouseUp = false;
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-
-            while (e.Button == MouseButtons.Left && e.Clicks == 1 && (mouseUp == false && stopWatch.ElapsedMilliseconds < holdButtonDuration))
-                Application.DoEvents();
-
-            if (stopWatch.ElapsedMilliseconds < holdButtonDuration)
+            try
             {
-                ((InterplayPOSDataGridView)this.dgCart).cart.UpdateItems(
-                    new Items
-                    {
-                        articleId = InterplayStorage.SelectedSimpleArticle.referenceArticleId,
-                        quantity = 1
-                    });
+                InterplayStorage.SetSelectedSimpleArticle(((InterplayPOSArticleButton)sender).simpleArticle);
+
+                mouseUp = false;
+                Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
+
+                while (e.Button == MouseButtons.Left && e.Clicks == 1 && (mouseUp == false && stopWatch.ElapsedMilliseconds < holdButtonDuration))
+                    Application.DoEvents();
+
+                if (stopWatch.ElapsedMilliseconds < holdButtonDuration)
+                {
+                    Cart.CartInstance.UpdateItems(new Items { articleId = InterplayStorage.SelectedSimpleArticle.referenceArticleId, quantity = 1 });
+                }
+
+                else
+                {
+                    Quantity quantityForm = new Quantity();
+                    quantityForm.ShowDialog();
+                }
             }
-
-            else
+            catch (Exception ex)
             {
-                Quantity quantityForm = new Quantity();
-                quantityForm.ShowDialog();
+                this.HandleException(ex);
             }
         }
 
@@ -245,62 +309,123 @@ namespace io.cloudloom.interplay.pos.ui
             this.txtSearch.Clear();
         }
 
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            //Cart.CartInstance.lineItems.ForEach(
-            //    item => Cart.CartInstance.UpdateItems(
-            //    new Items { articleId = item.articleID, quantity = -item.quantity }));
-
-            Cart.CartInstance.SuspendCart();
-        }
-
         private void btnDecrease_Click(object sender, EventArgs e)
         {
-            if (this.dgCart.SelectedRows.Count > 0)
+            try
             {
-                string selectedArticleId = Convert.ToString(this.dgCart.SelectedRows[0].Cells[0].Value);
-                Cart.CartInstance.UpdateItems(new Items { articleId = selectedArticleId, quantity = -1 });
+                if (this.dgCart.SelectedRows.Count > 0)
+                {
+                    string selectedArticleId = Convert.ToString(this.dgCart.SelectedRows[0].Cells[0].Value);
+                    Cart.CartInstance.UpdateItems(new Items { articleId = selectedArticleId, quantity = -1 });
+                }
+            }
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
             }
         }
 
         private void bnnIncrease_Click(object sender, EventArgs e)
         {
-            if (this.dgCart.SelectedRows.Count > 0)
+            try
             {
-                string selectedArticleId = Convert.ToString(this.dgCart.SelectedRows[0].Cells[0].Value);
-                Cart.CartInstance.UpdateItems(new Items { articleId = selectedArticleId, quantity = 1 });
+                if (this.dgCart.SelectedRows.Count > 0)
+                {
+                    string selectedArticleId = Convert.ToString(this.dgCart.SelectedRows[0].Cells[0].Value);
+                    Cart.CartInstance.UpdateItems(new Items { articleId = selectedArticleId, quantity = 1 });
+                }
+            }
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
             }
         }
 
         private void btnProceedToPay_Click(object sender, EventArgs e)
         {
+            try
+            {
+                DialogResult result = MessageBox.Show("Are you sure, want to check out cart?", "Cart Check Out", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                    Cart.CartInstance.CheckOutCart();
+                else
+                    return;
+            }
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
 
         }
 
         private void butLogout_Click(object sender, EventArgs e)
         {
-            InterplayStorage.SelectedUser = null;
-            this.Close();
-            UserSelection usersForm = new UserSelection();
-            usersForm.Show();
+            try
+            {
+                InterplayStorage.SelectedUser = null;
+                this.Close();
+                Cart.CartInstance.ClearCartData();
+                UserSelection usersForm = new UserSelection();
+                usersForm.Show();
+            }
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
         }
 
-        // ActiveCarts allCarts;
         private void butActiveCarts_Click(object sender, EventArgs e)
         {
-            ActiveCarts activeCarts = new ActiveCarts();
-            activeCarts.Show();
+            try
+            {
+                ActiveCarts activeCarts = new ActiveCarts();
+                activeCarts.Show();
+            }
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
         }
 
         private void btnDeleteArticle_Click(object sender, EventArgs e)
         {
-            if (this.dgCart.SelectedRows.Count > 0)
+            try
             {
-                string selectedArticleId = Convert.ToString(this.dgCart.SelectedRows[0].Cells[0].Value);
-                int quantity = Convert.ToInt16(this.dgCart.SelectedRows[0].Cells[2].Value);
+                if (this.dgCart.SelectedRows.Count > 0)
+                {
+                    string selectedArticleId = Convert.ToString(this.dgCart.SelectedRows[0].Cells[0].Value);
+                    int quantity = Convert.ToInt16(this.dgCart.SelectedRows[0].Cells[2].Value);
 
-                Cart.CartInstance.UpdateItems(new Items { articleId = selectedArticleId, quantity = -quantity });
+                    Cart.CartInstance.UpdateItems(new Items { articleId = selectedArticleId, quantity = -quantity });
+                }
             }
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
+        }
+
+        private void btnSuspend_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult result = MessageBox.Show("Are you sure, want to suspend cart?", "Cart Suspension", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                    Cart.CartInstance.SuspendCart();
+                else
+                    return;
+            }
+            catch (Exception ex)
+            {
+                this.HandleException(ex);
+            }
+        }
+
+        private void HandleException(Exception ex)
+        {
+            this.lblError.Text = ex.Message;
         }
     }
 }

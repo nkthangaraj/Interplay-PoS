@@ -13,7 +13,7 @@ namespace UI.CustomControls
     {
         public Cart cart = Cart.CartInstance;
 
-        public InterplayPOSDataGridView()
+        public InterplayPOSDataGridView():base()
         {
             cart.cartItemUpdated += Cart_cartItemUpdated;
             cart.cartSuspended += Cart_cartSuspended;
@@ -48,6 +48,7 @@ namespace UI.CustomControls
 
         private void CreateCartRows(Cart cart)
         {
+            this.CreateColumns();
             this.ClearRows();
 
             foreach (LineItem item in cart.lineItems)
@@ -70,6 +71,54 @@ namespace UI.CustomControls
         private void ClearRows()
         {
             this.Rows.Clear();
+        }
+
+        private void CreateColumns()
+        {
+            if(this.Columns.Count == 0)
+            {
+
+                DataGridViewTextBoxColumn Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+                DataGridViewTextBoxColumn ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+                DataGridViewTextBoxColumn Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+                DataGridViewTextBoxColumn UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+                DataGridViewTextBoxColumn Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
+                Id.HeaderText = "Id";
+                Id.Name = "Id";
+                Id.Visible = false;
+                // 
+                // ItemName
+                // 
+                ItemName.HeaderText = "Description";
+                ItemName.Name = "ItemName";
+                ItemName.Width = 240;
+                // 
+                // Quantity
+                // 
+                Quantity.HeaderText = "Qty";
+                Quantity.Name = "Quantity";
+                Quantity.Width = 50;
+                // 
+                // UnitPrice
+                // 
+                UnitPrice.HeaderText = "Unit";
+                UnitPrice.Name = "UnitPrice";
+                UnitPrice.Width = 50;
+                // 
+                // Total
+                // 
+                Total.HeaderText = "Total";
+                Total.Name = "Total";
+                Total.Width = 50;
+
+                this.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+                Id,
+                ItemName,
+                Quantity,
+                UnitPrice,
+                Total});
+            }
         }
     }
 }

@@ -13,9 +13,6 @@ namespace BL
 
         public CatalogueBL(Credential credential)
         {
-            credential.UserName = "admin";
-            credential.Password = "admin";
-
             this.service = new CatalogueService(credential);
         }
 

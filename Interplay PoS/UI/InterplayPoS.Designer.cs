@@ -31,10 +31,10 @@ namespace io.cloudloom.interplay.pos.ui
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(interplayMainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabMainFormInterplayPoS = new System.Windows.Forms.TabControl();
             this.tabSales = new System.Windows.Forms.TabPage();
             this.tblLayout_Sales = new System.Windows.Forms.TableLayoutPanel();
@@ -48,12 +48,6 @@ namespace io.cloudloom.interplay.pos.ui
             this.butClear = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.left = new System.Windows.Forms.TableLayoutPanel();
-            this.dgCart = new UI.CustomControls.InterplayPOSDataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblNetTotal = new System.Windows.Forms.Label();
             this.lblTax = new System.Windows.Forms.Label();
@@ -70,15 +64,24 @@ namespace io.cloudloom.interplay.pos.ui
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.mainInterposTablelayoutpanel = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dgCart = new UI.CustomControls.InterplayPOSDataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblError = new System.Windows.Forms.Label();
             this.tabMainFormInterplayPoS.SuspendLayout();
             this.tabSales.SuspendLayout();
             this.tblLayout_Sales.SuspendLayout();
             this.right.SuspendLayout();
             this.rightTableLayoutPanelSearch.SuspendLayout();
             this.left.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgCart)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.mainInterposTablelayoutpanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgCart)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMainFormInterplayPoS
@@ -267,80 +270,6 @@ namespace io.cloudloom.interplay.pos.ui
             this.left.Size = new System.Drawing.Size(359, 350);
             this.left.TabIndex = 1;
             // 
-            // dgCart
-            // 
-            this.dgCart.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.PaleGreen;
-            this.dgCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgCart.BackgroundColor = System.Drawing.Color.GhostWhite;
-            this.dgCart.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgCart.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.dgCart.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Green;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Leelawadee", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgCart.ColumnHeadersHeight = 40;
-            this.dgCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.ItemName,
-            this.Quantity,
-            this.UnitPrice,
-            this.Total});
-            this.dgCart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgCart.EnableHeadersVisualStyles = false;
-            this.dgCart.Location = new System.Drawing.Point(3, 3);
-            this.dgCart.Name = "dgCart";
-            this.dgCart.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LimeGreen;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Leelawadee", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgCart.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgCart.RowHeadersVisible = false;
-            this.dgCart.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgCart.RowTemplate.Height = 40;
-            this.dgCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgCart.Size = new System.Drawing.Size(353, 239);
-            this.dgCart.TabIndex = 2;
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // ItemName
-            // 
-            this.ItemName.HeaderText = "Description";
-            this.ItemName.Name = "ItemName";
-            this.ItemName.Width = 240;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Qty";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.Width = 50;
-            // 
-            // UnitPrice
-            // 
-            this.UnitPrice.HeaderText = "Unit";
-            this.UnitPrice.Name = "UnitPrice";
-            this.UnitPrice.Width = 50;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.Width = 50;
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 5;
@@ -441,9 +370,9 @@ namespace io.cloudloom.interplay.pos.ui
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(64, 33);
             this.btnClear.TabIndex = 2;
-            this.btnClear.Text = "Clear";
+            this.btnClear.Text = "Suspend";
             this.btnClear.UseVisualStyleBackColor = false;
-            this.btnClear.Click += new System.EventHandler(this.btnRemove_Click);
+            this.btnClear.Click += new System.EventHandler(this.btnSuspend_Click);
             // 
             // btnNetTotal
             // 
@@ -539,6 +468,7 @@ namespace io.cloudloom.interplay.pos.ui
             this.mainInterposTablelayoutpanel.ColumnCount = 1;
             this.mainInterposTablelayoutpanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainInterposTablelayoutpanel.Controls.Add(this.tabMainFormInterplayPoS, 0, 0);
+            this.mainInterposTablelayoutpanel.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.mainInterposTablelayoutpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainInterposTablelayoutpanel.Location = new System.Drawing.Point(0, 0);
             this.mainInterposTablelayoutpanel.Name = "mainInterposTablelayoutpanel";
@@ -555,6 +485,100 @@ namespace io.cloudloom.interplay.pos.ui
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn2.Width = 45;
+            // 
+            // dgCart
+            // 
+            this.dgCart.AllowUserToAddRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.PaleGreen;
+            this.dgCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgCart.BackgroundColor = System.Drawing.Color.GhostWhite;
+            this.dgCart.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgCart.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.dgCart.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Green;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Leelawadee", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgCart.ColumnHeadersHeight = 40;
+            this.dgCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.ItemName,
+            this.Quantity,
+            this.UnitPrice,
+            this.Total});
+            this.dgCart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgCart.EnableHeadersVisualStyles = false;
+            this.dgCart.Location = new System.Drawing.Point(3, 3);
+            this.dgCart.Name = "dgCart";
+            this.dgCart.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LimeGreen;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Leelawadee", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgCart.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgCart.RowHeadersVisible = false;
+            this.dgCart.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgCart.RowTemplate.Height = 40;
+            this.dgCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgCart.Size = new System.Drawing.Size(353, 239);
+            this.dgCart.TabIndex = 2;
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // ItemName
+            // 
+            this.ItemName.HeaderText = "Description";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.Width = 240;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Qty";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Width = 50;
+            // 
+            // UnitPrice
+            // 
+            this.UnitPrice.HeaderText = "Unit";
+            this.UnitPrice.Name = "UnitPrice";
+            this.UnitPrice.Width = 50;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.Width = 50;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.lblError);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 419);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(928, 41);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Leelawadee UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(3, 0);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(67, 19);
+            this.lblError.TabIndex = 0;
+            this.lblError.Text = "No Error";
             // 
             // interplayMainForm
             // 
@@ -574,10 +598,12 @@ namespace io.cloudloom.interplay.pos.ui
             this.rightTableLayoutPanelSearch.ResumeLayout(false);
             this.rightTableLayoutPanelSearch.PerformLayout();
             this.left.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgCart)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.mainInterposTablelayoutpanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgCart)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -618,6 +644,8 @@ namespace io.cloudloom.interplay.pos.ui
         private System.Windows.Forms.Button butActiveCarts;
         private System.Windows.Forms.TableLayoutPanel mainInterposTablelayoutpanel;
         private InterplayPOSDataGridView dgCart;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label lblError;
     }
 }
 

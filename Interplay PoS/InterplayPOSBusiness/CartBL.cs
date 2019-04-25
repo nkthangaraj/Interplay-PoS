@@ -15,9 +15,6 @@ namespace BL
 
         public CartBL(Credential credential)
         {
-            credential.UserName = "admin";
-            credential.Password = "admin";
-
             cartService = new CartsService(credential);
         }
 

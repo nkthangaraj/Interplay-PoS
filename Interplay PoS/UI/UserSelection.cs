@@ -16,7 +16,6 @@ namespace UI
     {
         public UserSelection()
         {
-            Utility.InterplayPOSMapper.Configure();
             InitializeComponent();
             PrepareUserSelectionview();
         }

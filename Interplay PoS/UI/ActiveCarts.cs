@@ -42,6 +42,8 @@ namespace UI
         {
             Cart cart = ((InterPlayPOSCartButton)sender).Cart;
             UI.Model.Cart.Cart.CartInstance.LoadCartInstance(cart);
+            this.Close();
+
         }
     }
 }

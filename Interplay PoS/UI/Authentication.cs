@@ -30,7 +30,7 @@ namespace UI
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
-            if (txtPassword.Text.Count() == 5)
+            if (txtPassword.Text.Count() == 6)
             {
                 string password = this.txtPassword.Text;
 

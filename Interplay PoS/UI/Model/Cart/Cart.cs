@@ -14,6 +14,7 @@ namespace UI.Model.Cart
     {
         #region Singleton implementation
 
+        // Maintain only one instance and keep use that to hold the UI event handlers, which is to update once cart created/ updated/ suspended/ checked the UI
         private Cart() { }
 
         private static Cart _instance;
@@ -63,6 +64,7 @@ namespace UI.Model.Cart
 
             BusinessCartContract.Cart cart = null;
 
+            // Open the cart while adding the first item to the cart
             if (CartInstance == null || CartInstance.id == null)
             {
                 cart = cartBL.OpenCart();
@@ -70,7 +72,8 @@ namespace UI.Model.Cart
                 //_instance = this.ConvertToUICart(cart);
                 UpdateUIContract(cart, _instance);
             }
-            if (_instance.status == "OPEN")
+
+            if (_instance.status == "OPEN" && _instance.type == "Cart")
             {
                 cart = cartBL.AddItemsToCart(_instance.id, businessItem);
                 // dont use below mapper, its creating new objects, loosing the event handlers, so do it manually
@@ -88,6 +91,7 @@ namespace UI.Model.Cart
                 new Credential { UserName = InterplayStorage.SelectedUser.UserName, Password = InterplayStorage.SelectedUser.Password });
 
             cartBL.AbandonCart(_instance.id);
+            this.ClearCartData();
 
             if (this.cartSuspended != null)
                 _instance.cartSuspended.Invoke();
@@ -102,12 +106,38 @@ namespace UI.Model.Cart
             }
         }
 
+        public void CheckOutCart()
+        {
+            cartBL = new CartBL(new Credential { UserName = InterplayStorage.SelectedUser.UserName, Password = InterplayStorage.SelectedUser.Password});
+
+            cartBL.CheckOutCart(_instance.id);
+            this.ClearCartData();
+
+            if(_instance != null)
+            {
+                if (_instance.newCartCreated != null)
+                    _instance.newCartCreated.Invoke();
+            }
+        }
+
         public void LoadCartInstance(BusinessCartContract.Cart cart)
         {
             UpdateUIContract(cart, _instance);
 
             if (activeCartLoaded != null)
                 activeCartLoaded.Invoke(_instance);
+        }
+
+        public void ClearCartData()
+        {
+            _instance.id = null;
+            _instance.userId = null;
+            _instance.created = DateTime.Now;
+            _instance.status = null;
+            _instance.type = null;
+            _instance.cartId = null;
+            _instance.lineItems = null;
+            _instance.subTotal = null;
         }
 
         #region Converters

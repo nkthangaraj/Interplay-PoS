@@ -57,7 +57,10 @@ namespace Proxy.Services
             string userNamePassword = Base64Encode(serviceClient.UserName + ":" + serviceClient.Password);
             serviceClient.AddHeader("Authorization", "Basic " + userNamePassword);
             RootObject rootObject = serviceClient.Get<RootObject>(string.Format("{0}{1}", baseUrl, "carts/" + "all" + "/status?"+"status=OPEN"));
-            return rootObject._embedded.carts;
+            if (rootObject._embedded != null)
+                return rootObject._embedded.carts;
+            else
+                return null;
         }
 
         public Cart AbandonActiveCart(string cartId)
