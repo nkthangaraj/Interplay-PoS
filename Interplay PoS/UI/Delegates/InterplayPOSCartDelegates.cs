@@ -10,5 +10,6 @@ namespace UI.Delegats
 {
     public delegate void CartItemUpdated(Cart cart);
     public delegate void CartSuspended();
-    public delegate void NewCartCreated(Cart cart);
+    public delegate void NewCartCreated();
+    public delegate void ActiveCartLoaded(Cart cart);
 }

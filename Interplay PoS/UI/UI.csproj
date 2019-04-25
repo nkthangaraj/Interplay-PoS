@@ -79,7 +79,7 @@
     <Compile Include="Authentication.Designer.cs">
       <DependentUpon>Authentication.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\InterPlayPOSAllCartsButton.cs">
+    <Compile Include="CustomControls\InterPlayPOSCartButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomControls\InterplayPOSArticleButton.cs">

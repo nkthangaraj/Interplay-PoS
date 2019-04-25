@@ -34,6 +34,8 @@ namespace UI.Model.Cart
 
         public event CartItemUpdated cartItemUpdated;
         public event CartSuspended cartSuspended;
+        public event ActiveCartLoaded activeCartLoaded;
+        public event NewCartCreated newCartCreated;
 
         #endregion
 
@@ -66,26 +68,46 @@ namespace UI.Model.Cart
                 cart = cartBL.OpenCart();
                 // dont use below mapper, its creating new objects, loosing the event handlers, so do it manually
                 //_instance = this.ConvertToUICart(cart);
-                this.UpdateUIContract(cart, _instance);
+                UpdateUIContract(cart, _instance);
             }
+            if (_instance.status == "OPEN")
+            {
+                cart = cartBL.AddItemsToCart(_instance.id, businessItem);
+                // dont use below mapper, its creating new objects, loosing the event handlers, so do it manually
+                //_instance = this.ConvertToUICart(cart);
+                UpdateUIContract(cart, _instance);
 
-            cart = cartBL.AddItemsToCart(_instance.id, businessItem);
-            // dont use below mapper, its creating new objects, loosing the event handlers, so do it manually
-            //_instance = this.ConvertToUICart(cart);
-            this.UpdateUIContract(cart, _instance);
-
-            if (this.cartItemUpdated != null)
-                this.cartItemUpdated.Invoke(_instance);
+                if (this.cartItemUpdated != null)
+                    this.cartItemUpdated.Invoke(_instance);
+            }
         }
 
         public void SuspendCart()
         {
             cartBL = new CartBL(
                 new Credential { UserName = InterplayStorage.SelectedUser.UserName, Password = InterplayStorage.SelectedUser.Password });
-            
+
+            cartBL.AbandonCart(_instance.id);
+
             if (this.cartSuspended != null)
                 _instance.cartSuspended.Invoke();
+        }
 
+        public void CreateNewCart()
+        {
+            if (_instance != null)
+            {
+                if (_instance.newCartCreated != null)
+                    _instance.newCartCreated.Invoke();
+            }
+        }
+
+        public void LoadCartInstance(BusinessCartContract.Cart cart)
+        {
+            UpdateUIContract(cart, _instance);
+
+            if (activeCartLoaded != null)
+                activeCartLoaded.Invoke(_instance);
         }
 
         #region Converters

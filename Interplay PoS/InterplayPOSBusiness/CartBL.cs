@@ -51,6 +51,13 @@ namespace BL
             return cart;
         }
 
+        public BusinessCartContract.Cart AbandonCart(string cartId)
+        {
+            ProxyCartContract.Cart proxyCart = this.cartService.AbandonActiveCart(cartId);
+            BusinessCartContract.Cart cart = this.ConvertToBusinessCart(proxyCart);
+            return cart;
+        }
+
         public List<BusinessCartContract.Cart> GetActiveCartsByUser()
         {
             List<ProxyCartContract.Cart> proxyCarts = this.cartService.GetUserActiveCarts();

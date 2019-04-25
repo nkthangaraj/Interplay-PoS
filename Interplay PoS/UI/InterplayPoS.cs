@@ -24,23 +24,85 @@ namespace io.cloudloom.interplay.pos.ui
         public interplayMainForm()
         {
             InitializeComponent();
-            AttachEventsForCartChanges();
             CreateCatalogueButtons();
+            Cart.CartInstance.CreateNewCart();
+            AttachEventsForCartChanges();
         }
 
         private void AttachEventsForCartChanges()
         {
             Cart.CartInstance.cartItemUpdated += Cart_cartItemUpdated;
+            Cart.CartInstance.activeCartLoaded += CartInstance_activeCartLoaded;
+            Cart.CartInstance.cartSuspended += CartInstance_cartSuspended;
+            Cart.CartInstance.newCartCreated += CartInstance_newCartCreated;
+        }
+
+        private void CartInstance_newCartCreated()
+        {
+            this.CreateZeroValuedCartUI();
+            this.PrepareUIForActiveCarts();
+        }
+
+        private void CartInstance_cartSuspended()
+        {
+            CreateZeroValuedCartUI();
+        }
+
+        private void CreateZeroValuedCartUI()
+        {
+            this.btnTotal.Text = "0.0";
+            this.btnTax.Text = "0.0";
+            this.btnNetTotal.Text = "0.0";
+        }
+
+        private void PrepareUIForCart(Cart cart)
+        {
+            if(cart.status == "OPEN")
+            {
+                this.PrepareUIForActiveCarts();
+            }
+
+            else
+            {
+                this.PrepareUIForClosedCarts();
+            }
+        }
+
+        private void PrepareUIForClosedCarts()
+        {
+            btnRemove.Enabled = false;
+            bnnIncrease.Enabled = false;
+            btnDecrease.Enabled = false;
+            btnRemove.Enabled = false;
+            btnProceedToPay.Enabled = false;
+        }
+
+        private void PrepareUIForActiveCarts()
+        {
+            btnRemove.Enabled = true;
+            bnnIncrease.Enabled = true;
+            btnDecrease.Enabled = true;
+            btnRemove.Enabled = true;
+            btnProceedToPay.Enabled = true;
         }
 
         private void CartInstance_cartItemUpdated(Cart cart)
         {
-            this.btnTotal.Text = Convert.ToString(cart.subTotal.amount);
-            this.btnTax.Text = "0.0";
-            this.btnNetTotal.Text = Convert.ToString(cart.subTotal.amount);
+            this.UpdateCartDetails(cart);
+        }
+
+        private void CartInstance_activeCartLoaded(Cart cart)
+        {
+            this.UpdateCartDetails(cart);
         }
 
         private void Cart_cartItemUpdated(Cart cart)
+        {
+            this.UpdateCartDetails(cart);
+        }
+
+
+        private void UpdateCartDetails(Cart cart)
         {
             this.btnTotal.Text = Convert.ToString(cart.subTotal.amount);
             this.btnTax.Text = "0.0";
@@ -185,9 +247,11 @@ namespace io.cloudloom.interplay.pos.ui
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            Cart.CartInstance.lineItems.ForEach(
-                item => Cart.CartInstance.UpdateItems(
-                new Items { articleId = item.articleID, quantity = -item.quantity }));
+            //Cart.CartInstance.lineItems.ForEach(
+            //    item => Cart.CartInstance.UpdateItems(
+            //    new Items { articleId = item.articleID, quantity = -item.quantity }));
+
+            Cart.CartInstance.SuspendCart();
         }
 
         private void btnDecrease_Click(object sender, EventArgs e)
@@ -210,16 +274,15 @@ namespace io.cloudloom.interplay.pos.ui
 
         private void btnProceedToPay_Click(object sender, EventArgs e)
         {
-            //    io.cloudloom.interplay.pos.Proxy.Contracts.Carts.RootObject checkoutCartItem = cartsOperation.CheckoutCartItems();
-            //    if (checkoutCartItem.type == "SaleOrder")
-            //    {
-            //        this.dgCart.Rows.Clear();
-            //    }
+
         }
 
         private void butLogout_Click(object sender, EventArgs e)
         {
+            InterplayStorage.SelectedUser = null;
             this.Close();
+            UserSelection usersForm = new UserSelection();
+            usersForm.Show();
         }
 
         // ActiveCarts allCarts;

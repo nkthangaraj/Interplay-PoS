@@ -60,6 +60,14 @@ namespace Proxy.Services
             return rootObject._embedded.carts;
         }
 
+        public Cart AbandonActiveCart(string cartId)
+        {
+                serviceClient.BaseUri = baseUrl;
+                string userNamePassword = Base64Encode(serviceClient.UserName + ":" + serviceClient.Password);
+                serviceClient.AddHeader("Authorization", "Basic " + userNamePassword);
+                Cart cart = serviceClient.Put<Cart>(string.Format("{0}{1}", baseUrl, "carts/" + cartId + "/abandon"), null);
+                return cart;
+        }
 
         public static string Base64Encode(string plainText)
         {

@@ -17,6 +17,18 @@ namespace UI.CustomControls
         {
             cart.cartItemUpdated += Cart_cartItemUpdated;
             cart.cartSuspended += Cart_cartSuspended;
+            cart.activeCartLoaded += Cart_activeCartLoaded;
+            cart.newCartCreated += Cart_newCartCreated;
+        }
+
+        private void Cart_newCartCreated()
+        {
+            this.ClearRows();
+        }
+
+        private void Cart_activeCartLoaded(Cart cart)
+        {
+            this.CreateCartRows(cart);
         }
 
         private void Cart_cartSuspended()
@@ -30,6 +42,11 @@ namespace UI.CustomControls
         }
 
         private void CreateRows(Cart cart)
+        {
+            this.CreateCartRows(cart);
+        }
+
+        private void CreateCartRows(Cart cart)
         {
             this.ClearRows();
 
