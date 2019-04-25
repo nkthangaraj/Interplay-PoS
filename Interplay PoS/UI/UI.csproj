@@ -172,18 +172,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="webfonts\fa-brands-400.eot" />
-    <None Include="webfonts\fa-brands-400.ttf" />
-    <None Include="webfonts\fa-brands-400.woff" />
-    <None Include="webfonts\fa-brands-400.woff2" />
-    <None Include="webfonts\fa-regular-400.eot" />
-    <None Include="webfonts\fa-regular-400.ttf" />
-    <None Include="webfonts\fa-regular-400.woff" />
-    <None Include="webfonts\fa-regular-400.woff2" />
-    <None Include="webfonts\fa-solid-900.eot" />
-    <None Include="webfonts\fa-solid-900.ttf" />
-    <None Include="webfonts\fa-solid-900.woff" />
-    <None Include="webfonts\fa-solid-900.woff2" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -199,41 +187,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\brands.css" />
-    <Content Include="Content\brands.min.css" />
-    <Content Include="Content\fontawesome-all.css" />
-    <Content Include="Content\fontawesome-all.min.css" />
-    <Content Include="Content\fontawesome.css" />
-    <Content Include="Content\fontawesome.min.css" />
-    <Content Include="Content\regular.css" />
-    <Content Include="Content\regular.min.css" />
-    <Content Include="Content\solid.css" />
-    <Content Include="Content\solid.min.css" />
-    <Content Include="Content\svg-with-js.css" />
-    <Content Include="Content\svg-with-js.min.css" />
-    <Content Include="Content\v4-shims.css" />
-    <Content Include="Content\v4-shims.min.css" />
     <Content Include="Images\delete16c16.png" />
     <Content Include="Images\decrease.png" />
     <Content Include="Images\delete50C50.png" />
     <Content Include="Images\QuanityMinus50C50.jpg" />
     <Content Include="Images\QuantityMinus60C60.jpg" />
     <Content Include="Images\QuantityPlus60C60.jpg" />
-    <Content Include="Scripts\fontawesome\all.js" />
-    <Content Include="Scripts\fontawesome\all.min.js" />
-    <Content Include="Scripts\fontawesome\brands.js" />
-    <Content Include="Scripts\fontawesome\brands.min.js" />
-    <Content Include="Scripts\fontawesome\fontawesome.js" />
-    <Content Include="Scripts\fontawesome\fontawesome.min.js" />
-    <Content Include="Scripts\fontawesome\regular.js" />
-    <Content Include="Scripts\fontawesome\regular.min.js" />
-    <Content Include="Scripts\fontawesome\solid.js" />
-    <Content Include="Scripts\fontawesome\solid.min.js" />
-    <Content Include="Scripts\fontawesome\v4-shims.js" />
-    <Content Include="Scripts\fontawesome\v4-shims.min.js" />
-    <Content Include="webfonts\fa-brands-400.svg" />
-    <Content Include="webfonts\fa-regular-400.svg" />
-    <Content Include="webfonts\fa-solid-900.svg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -247,8 +206,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ConsumeCarts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
